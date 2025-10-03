@@ -46,8 +46,8 @@ two of the will be used to determine the x and y position of the ship, and the t
 const x = 0; // or whatever user defines
 const y = 0; // or whatever user defines
 
-const x = Math.floor(Math.random() * x) + 1;
-const y = Math.floor(Math.random() * y) + 1;
+const gridX = Math.floor(Math.random() * x) + 1;
+const gridY = Math.floor(Math.random() * y) + 1;
 const direction = Math.round(Math.random())
 ```
 
