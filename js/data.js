@@ -2,7 +2,7 @@ let gridX = 0;
 
 let gridY = 0;
 
-let grid = [[], []];
+let grid = [];
 
 let gameType = "pvp";
 

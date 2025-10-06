@@ -1,5 +1,6 @@
 * {
     background-color: lightgray;
+    font-family: "Alan Sans", sans-serif;
 }
 
 .grid {
@@ -7,16 +8,25 @@
     justify-content: center;
 }
 
-.row {
-    display: block;
+.splashscreen {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.column:hover {
+    background-color: darkgray;
+    cursor: pointer;
 }
 
 .column {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     margin: 20px 30px 20px 30px;
-    padding: 40px 40px 40px 40px;
+    padding: 70px 70px 70px 70px;
     border: 2px solid black;
 }
