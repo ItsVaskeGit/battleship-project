@@ -1,0 +1,77 @@
+* {
+    background-color: lightgray;
+    font-family: "Alan Sans", sans-serif;
+}
+
+.splashscreen {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.start-buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    justify-content: space-evenly;
+}
+
+#pvp, #pve {
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 10px 50px 10px 50px;
+}
+
+#pvp:hover, #pve:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+#grid-x {
+    margin-right: 20px;
+    padding: 10px 40px 10px 40px;
+    border-radius: 20px;
+}
+
+.randomize {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#randomizer {
+    border: 2px solid black;
+    padding: 15px 30px 15px 30px;
+    border-radius: 20px;
+}
+
+#randomizer:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+#grid-y {
+    margin-left: 20px;
+    padding: 10px 40px 10px 40px;
+    border-radius: 20px;
+}
+
+.grid-size {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.welcome-screen {
+    margin-bottom: 20px;
+}
+
+h1, h3, h4 {
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 50px;
+}
