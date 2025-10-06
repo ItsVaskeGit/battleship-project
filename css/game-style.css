@@ -3,7 +3,7 @@
     font-family: "Alan Sans", sans-serif;
 }
 
-.grid {
+.row {
     display: flex;
     justify-content: center;
 }
