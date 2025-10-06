@@ -8,6 +8,8 @@ let grid2 = [];
 
 let gameType = "pvp";
 
+let player1GridRandom = true;
+
 let player1Wins = 0;
 
 let player2Wins = 0;
