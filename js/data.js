@@ -4,12 +4,6 @@ let gridY = 0;
 
 let grid = [[], []];
 
-let player1Ships = 0;
-
-let player2Ships= 0;
-
-let cpuShips = 0;
-
 let gameType = "pvp";
 
 let player1Wins = 0;

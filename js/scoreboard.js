@@ -1,5 +1,6 @@
 let simpleStats = document.querySelectorAll(".simple-stat");
 let detailedStats = document.querySelector(".detailed-stats");
+let newGame = document.querySelector(".new-game");
 
 simpleStats.forEach((stat) => {
     switch(stat.id) {
@@ -7,7 +8,7 @@ simpleStats.forEach((stat) => {
             stat.innerHTML += " " + player1Wins;
             break;
         case 'player2-wins':
-            stat.innerHTML += " " + player2Ships;
+            stat.innerHTML += " " + player2Wins;
             break;
         case 'cpu-wins':
             stat.innerHTML += " " + cpuWins;
@@ -42,3 +43,6 @@ games.forEach((game) => {
     gameNum++;
 });
 
+newGame.addEventListener("click", () => {
+    window.location.replace("../index.html")
+});
