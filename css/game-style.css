@@ -1,0 +1,22 @@
+* {
+    background-color: lightgray;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+}
+
+.row {
+    display: block;
+}
+
+.column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 30px 20px 30px;
+    padding: 40px 40px 40px 40px;
+    border: 2px solid black;
+}

@@ -5,9 +5,40 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/scoreboard-style.css">
+    <script src="/js/data.js"></script>
+    <script defer src="/js/scoreboard.js"></script>
+    <title>Scoreboard</title>
 </head>
 <body>
-
+<div class="splashscreen">
+    <h1>Scoreboard:</h1>
+    <h3>You can see the all time stats below.</h3>
+</div>
+<div class="simple-stats">
+    <div id="player1-wins" class="simple-stat">Player 1 Wins:</div>
+    <div id="player2-wins" class="simple-stat">Player 2 Wins:</div>
+    <div id="cpu-wins" class="simple-stat">CPU Wins:</div>
+    <div id="player1-win-ratio" class="simple-stat">Player 1 Win Ratio:</div>
+    <div id="player2-win-ratio" class="simple-stat">Player 2 Win Ratio:</div>
+    <div id="cpu-win-ratio" class="simple-stat">CPU Win Ratio:</div>
+    <div id="games-played" class="simple-stat">Games Played:</div>
+</div>
+<div class="label">
+    <h1>Detailed Stats: </h1>
+</div>
+<div class="detailed-stats">
+    <div class="row">
+        <div class="column">Game num</div>
+        <div class="column">Winner</div>
+        <div class="column">Type </div>
+        <div class="column">Player 1 Ships </div>
+        <div class="column">Player 2 Ships</div>
+        <div class="column">CPU Ships</div>
+    </div>
+</div>
 </body>
 </html>

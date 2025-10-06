@@ -1,0 +1,43 @@
+* {
+    background-color: lightgray;
+    font-family: "Alan Sans", sans-serif;
+}
+
+.splashscreen {
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.simple-stats {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-evenly;
+}
+
+.label {
+    margin-top: 50px;
+}
+
+.detailed-stats {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-top: 50px;
+    border: 2px solid black;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    margin: 15px 80px 15px 80px;
+}
