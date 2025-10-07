@@ -4,8 +4,8 @@ let player1Label = document.querySelector("#player-1");
 let player2Label = document.querySelector("#player-2")
 let buttons = [];
 
-gridX = 5;
-gridY = 5;
+gridX = 7;
+gridY = 7;
 
 let player1Ships = 0;
 let player2Ships = 0;
@@ -13,7 +13,6 @@ let turn = 'player1';
 
 let grid1Ships = [];
 let grid2Ships = [];
-
 
 //Set the initial turn label
 turnLabel.innerHTML = "Turn: Player 1";
@@ -46,6 +45,7 @@ for(let i = 0; i < gridX; i++) {
         const button = document.createElement('div');
         button.setAttribute("class", "column");
         button.setAttribute("id", j);
+        button.innerHTML = "?";
         row.appendChild(button);
         buttons.push(button);
     }
@@ -123,7 +123,6 @@ function takeAShot(button) {
             button.style.backgroundSize = "cover";
             player2Ships--;
             player2Label.innerHTML = "Player 2 : " + player2Ships;
-            console.log(player2Ships)
             setTimeout(() => {continueCode(button)}, 500);
         }
     }else if(turn === "player2") {
@@ -389,7 +388,6 @@ function randomizeGrid() {
     console.log(player2Ships)
     console.log(grid2Ships);
 
-    console.log(grid1)
     if(player1GridRandom) {
         for(let i =  0; i < numberOfShips; i++) {
             let randomX = Math.floor(Math.random() * (gridX + 1 - 1));
