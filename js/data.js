@@ -6,7 +6,7 @@ let grid1 = [];
 
 let grid2 = [];
 
-let gameType = "pvp";
+let gameType = "pve";
 
 let player1GridRandom = true;
 
@@ -24,4 +24,4 @@ let cpuWinRatio = 0;
 
 let gamesPlayed = 0;
 
-let games = [{winner: '', startTime: '', type: '', player1Ships: '', player2Ships: '', cpuShips: ''}]
+let games = []
