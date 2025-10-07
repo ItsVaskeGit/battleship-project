@@ -1,5 +1,7 @@
 let gridBox = document.querySelector(".grid-box");
 let turnLabel = document.querySelector("#turn");
+let player1Label = document.querySelector("#player-1");
+let player2Label = document.querySelector("#player-2")
 let buttons = [];
 
 gridX = 5;
@@ -8,6 +10,9 @@ gridY = 5;
 let player1Ships = 0;
 let player2Ships = 0;
 let turn = 'player1';
+
+let grid1Ships = [];
+let grid2Ships = [];
 
 
 //Set the initial turn label
@@ -70,9 +75,56 @@ function takeAShot(button) {
             button.style.backgroundSize = "cover";
             setTimeout(() => {continueCode(button)}, 500);
         }else if(grid2[x][y] === 1) {
+            let shipData = grid2Ships.filter((ship) => { return  ship.x === x && ship.y === y})[0];
+            if(shipData.direction === "left") {
+                if(shipData.type === 3) {
+                    grid2[x][y] = 0;
+                    grid2[x][y - 1] = 0;
+                    grid2[x][y - 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid2[x][y] = 0;
+                    grid2[x][y - 1] = 0;
+                }else {
+                    grid2[x][y] = 0;
+                }
+            }else if(shipData.direction === "right") {
+                if(shipData.type === 3) {
+                    grid2[x][y] = 0;
+                    grid2[x][y + 1] = 0;
+                    grid2[x][y + 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid2[x][y] = 0;
+                    grid2[x][y + 1] = 0;
+                }else {
+                    grid2[x][y] = 0;
+                }
+            }else if(shipData.direction === "up") {
+                if(shipData.type === 3) {
+                    grid2[x][y] = 0;
+                    grid2[x + 1][y] = 0;
+                    grid2[x + 2][y] = 0;
+                }else if(shipData.type === 2) {
+                    grid2[x][y] = 0;
+                    grid2[x + 1][y] = 0;
+                }else {
+                    grid2[x][y] = 0;
+                }
+            }else if(shipData.direction === "down") {
+                if(shipData.type === 3) {
+                    grid2[x][y] = 0;
+                    grid2[x - 1][y] = 0;
+                    grid2[x - 2][y] = 0;
+                }else if(shipData.type === 2) {
+                    grid2[x][y] = 0;
+                    grid2[x - 1][y] = 0;
+                }else {
+                    grid2[x][y] = 0;
+                }
+            }
             button.style.backgroundImage = "url(../images/detonation.gif)";
             button.style.backgroundSize = "cover";
             player2Ships--;
+            player2Label.innerHTML = "Player 2 : " + player2Ships;
             console.log(player2Ships)
             setTimeout(() => {continueCode(button)}, 500);
         }
@@ -82,16 +134,110 @@ function takeAShot(button) {
             button.style.backgroundSize = "cover";
             setTimeout(() => {continueCode(button)}, 500);
         }else if(grid1[x][y] === 1) {
+            let shipData = grid1Ships.filter((ship) => { return  ship.x === x && ship.y === y})[0];
+            if(shipData.direction === "left") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x][y - 1] = 0;
+                    grid1[x][y - 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x][y - 1] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }else if(shipData.direction === "right") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x][y + 1] = 0;
+                    grid1[x][y + 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x][y + 1] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }else if(shipData.direction === "up") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x + 1][y] = 0;
+                    grid1[x + 2][y] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x + 1][y] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }else if(shipData.direction === "down") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x - 1][y] = 0;
+                    grid1[x - 2][y] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x - 1][y] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }
             button.style.backgroundImage = "url(../images/detonation.gif)";
             button.style.backgroundSize = "cover";
             player1Ships--;
+            player1Label.innerHTML = "Player 1 : " + player2Ships;
             setTimeout(() => {continueCode(button)}, 500);
         }
     }else if(turn === "cpu") {
         if(grid1[x][y] === 0) {
             setTimeout(() => {continueCode(button)}, 500);
         }else if(grid1[x][y] === 1) {
+            let shipData = grid1Ships.filter((ship) => { return  ship.x === x && ship.y === y})[0];
+            if(shipData.direction === "left") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x][y - 1] = 0;
+                    grid1[x][y - 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x][y - 1] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }else if(shipData.direction === "right") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x][y + 1] = 0;
+                    grid1[x][y + 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x][y + 1] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }else if(shipData.direction === "up") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x + 1][y] = 0;
+                    grid1[x + 2][y] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x + 1][y] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }else if(shipData.direction === "down") {
+                if(shipData.type === 3) {
+                    grid1[x][y] = 0;
+                    grid1[x - 1][y] = 0;
+                    grid1[x - 2][y] = 0;
+                }else if(shipData.type === 2) {
+                    grid1[x][y] = 0;
+                    grid1[x - 1][y] = 0;
+                }else {
+                    grid1[x][y] = 0;
+                }
+            }
             player1Ships--;
+            player1Label.innerHTML = "Player 1 : " + player2Ships;
             setTimeout(() => {continueCode(button)}, 500);
         }
     }
@@ -155,6 +301,7 @@ function randomizeGrid() {
                               grid2[randomX - 1][randomY] = 1;
                               grid2[randomX - 2][randomY] = 1;
                               player2Ships += 1;
+                              grid2Ships.push({type: 2, direction: "down", x: randomX, y: randomY});
                         }
                     }else {
                         if(grid2[randomX + 1][randomY] === 0 && grid2[randomX + 2][randomY] === 0) {
@@ -162,6 +309,7 @@ function randomizeGrid() {
                             grid2[randomX + 1][randomY] = 1;
                             grid2[randomX + 2][randomY] = 1;
                             player2Ships += 1;
+                            grid2Ships.push({type: 2, direction: "up", x: randomX, y: randomY});
                         }
                     }
                 }else {
@@ -180,6 +328,7 @@ function randomizeGrid() {
                             grid2[randomX][randomY - 1] = 1;
                             grid2[randomX][randomY - 2] = 1;
                             player2Ships += 1;
+                            grid2Ships.push({type: 2, direction: "left", x: randomX, y: randomY});
                         }
                     }else {
                         if(grid2[randomX][randomY + 1] === 0 && grid2[randomX][randomY + 2] === 0) {
@@ -187,6 +336,7 @@ function randomizeGrid() {
                             grid2[randomX][randomY + 1] = 1;
                             grid2[randomX][randomY + 2] = 1;
                             player2Ships += 1;
+                            grid2Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
                         }
                     }
                 }
@@ -200,12 +350,14 @@ function randomizeGrid() {
                             grid2[randomX][randomY] = 1;
                             grid2[randomX - 1][randomY] = 1;
                             player2Ships += 1;
+                            grid2Ships.push({type: 1, direction: "down", x: randomX, y: randomY});
                         }
                     }else {
                         if(grid2[randomX + 1][randomY] === 0) {
                             grid2[randomX][randomY] = 1;
                             grid2[randomX + 1][randomY] = 1;
                             player2Ships += 1;
+                            grid2Ships.push({type: 1, direction: "up", x: randomX, y: randomY});
                         }
                     }
                 }else {
@@ -217,18 +369,21 @@ function randomizeGrid() {
                             grid2[randomX][randomY] = 1;
                             grid2[randomX][randomY - 1] = 1;
                             player2Ships += 1;
+                            grid2Ships.push({type: 2, direction: "left", x: randomX, y: randomY});
                         }
                     }else {
                         if(grid2[randomX][randomY + 1] === 0) {
                             grid2[randomX][randomY] = 1;
                             grid2[randomX][randomY + 1] = 1;
                             player2Ships += 1;
+                            grid2Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
                         }
                     }
                 }
             }else {
                 grid2[randomX][randomY] = 1;
                 player2Ships += 1;
+                grid2Ships.push({type: 1, direction: "neutral", x: randomX, y: randomY});
             }
         }
     }
@@ -266,6 +421,7 @@ function randomizeGrid() {
                                 grid1[randomX - 1][randomY] = 1;
                                 grid1[randomX - 2][randomY] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 2, direction: "down", x: randomX, y: randomY});
                             }
                         }else {
                             if(grid1[randomX + 1][randomY] === 0 && grid1[randomX + 2][randomY] === 0) {
@@ -273,6 +429,7 @@ function randomizeGrid() {
                                 grid1[randomX + 1][randomY] = 1;
                                 grid1[randomX + 2][randomY] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 2, direction: "up", x: randomX, y: randomY});
                             }
                         }
                     }else {
@@ -291,6 +448,7 @@ function randomizeGrid() {
                                 grid1[randomX][randomY - 1] = 1;
                                 grid1[randomX][randomY - 2] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 2, direction: "left", x: randomX, y: randomY});
                             }
                         }else {
                             if(grid1[randomX][randomY + 1] === 0 && grid1[randomX][randomY + 2] === 0) {
@@ -298,6 +456,7 @@ function randomizeGrid() {
                                 grid1[randomX][randomY + 1] = 1;
                                 grid1[randomX][randomY + 2] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
                             }
                         }
                     }
@@ -311,12 +470,14 @@ function randomizeGrid() {
                                 grid1[randomX][randomY] = 1;
                                 grid1[randomX - 1][randomY] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 1, direction: "down", x: randomX, y: randomY});
                             }
                         }else {
                             if(grid1[randomX + 1][randomY] === 0) {
                                 grid1[randomX][randomY] = 1;
                                 grid1[randomX + 1][randomY] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 1, direction: "up", x: randomX, y: randomY});
                             }
                         }
                     }else {
@@ -328,22 +489,28 @@ function randomizeGrid() {
                                 grid1[randomX][randomY] = 1;
                                 grid1[randomX][randomY - 1] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 1, direction: "left", x: randomX, y: randomY});
                             }
                         }else {
                             if(grid1[randomX][randomY + 1] === 0) {
                                 grid1[randomX][randomY] = 1;
                                 grid1[randomX][randomY + 1] = 1;
                                 player1Ships += 1;
+                                grid1Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
                             }
                         }
                     }
                 }else {
                     grid1[randomX][randomY] = 1;
                     player1Ships += 1;
+                    grid1Ships.push({type: 1, direction: "neutral", x: randomX, y: randomY});
                 }
             }
         }
     }
+
+    player1Label.innerHTML = "Player 1 : " + player1Ships;
+    player2Label.innerHTML = "Player 2 : " + player2Ships;
 }
 
 // This function is used if the other player is cpu, to make a random shot at the grid

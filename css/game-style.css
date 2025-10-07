@@ -30,3 +30,9 @@ h1, h2 {
     padding: 70px 70px 70px 70px;
     border: 2px solid black;
 }
+
+.ships-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
