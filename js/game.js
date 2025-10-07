@@ -18,8 +18,6 @@ let grid2Ships = [];
 //Set the initial turn label
 turnLabel.innerHTML = "Turn: Player 1";
 
-player2Ships = 1;
-
 // This is used to really initialize grid array that is later going to be used for the game.
 // It's for a grid for player 1
 for(let i = 0; i < gridX; i++) {
@@ -65,7 +63,6 @@ if(gameType === "pve") randomizeGrid();
 
 // This function shoots at the selected target and checks the rest of the flow of the game
 function takeAShot(button) {
-    // TODO Shooting logic
     let x = button.parentElement.id;
     let y = button.id;
 
@@ -75,7 +72,8 @@ function takeAShot(button) {
             button.style.backgroundSize = "cover";
             setTimeout(() => {continueCode(button)}, 500);
         }else if(grid2[x][y] === 1) {
-            let shipData = grid2Ships.filter((ship) => { return  ship.x === x && ship.y === y})[0];
+            let shipData = grid2Ships.filter(ship => { return ship.x === Number(x) && ship.y === Number(y) });
+            console.log(shipData);
             if(shipData.direction === "left") {
                 if(shipData.type === 3) {
                     grid2[x][y] = 0;
@@ -134,7 +132,7 @@ function takeAShot(button) {
             button.style.backgroundSize = "cover";
             setTimeout(() => {continueCode(button)}, 500);
         }else if(grid1[x][y] === 1) {
-            let shipData = grid1Ships.filter((ship) => { return  ship.x === x && ship.y === y})[0];
+            let shipData = grid1Ships.find( ship => { return ship.x === Number(x) && ship.y === Number(y) });
             if(shipData.direction === "left") {
                 if(shipData.type === 3) {
                     grid1[x][y] = 0;
@@ -190,7 +188,7 @@ function takeAShot(button) {
         if(grid1[x][y] === 0) {
             setTimeout(() => {continueCode(button)}, 500);
         }else if(grid1[x][y] === 1) {
-            let shipData = grid1Ships.filter((ship) => { return  ship.x === x && ship.y === y})[0];
+            let shipData = grid1Ships.find( ship => { return ship.x === Number(x) && ship.y === Number(y) });
             if(shipData.direction === "left") {
                 if(shipData.type === 3) {
                     grid1[x][y] = 0;
@@ -350,14 +348,14 @@ function randomizeGrid() {
                             grid2[randomX][randomY] = 1;
                             grid2[randomX - 1][randomY] = 1;
                             player2Ships += 1;
-                            grid2Ships.push({type: 1, direction: "down", x: randomX, y: randomY});
+                            grid2Ships.push({type: 2, direction: "down", x: randomX, y: randomY});
                         }
                     }else {
                         if(grid2[randomX + 1][randomY] === 0) {
                             grid2[randomX][randomY] = 1;
                             grid2[randomX + 1][randomY] = 1;
                             player2Ships += 1;
-                            grid2Ships.push({type: 1, direction: "up", x: randomX, y: randomY});
+                            grid2Ships.push({type: 2, direction: "up", x: randomX, y: randomY});
                         }
                     }
                 }else {
@@ -389,6 +387,7 @@ function randomizeGrid() {
     }
 
     console.log(player2Ships)
+    console.log(grid2Ships);
 
     console.log(grid1)
     if(player1GridRandom) {
