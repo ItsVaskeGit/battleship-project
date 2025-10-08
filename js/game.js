@@ -125,125 +125,205 @@ function randomizeGrid() {
         let check2 = [randomX, randomX + 1];
         let check3 = [randomY, randomY - 1];
 
-        if(grid2.findIndex((ship) => { return ship.x === [randomX] && ship.y === [randomY]}) === -1) {
-            if(randomShipType === 3) {
-                if(randomDirection === 1) {
-                    if (randomDirectionUpDown === 1) {
-                        if(randomX === 0) {
-                            randomX += 2;
-                        }else if(randomX === 1) {
+        if (gameType === "pve" || player2GridRandom) {
+            if (grid2.findIndex((ship) => {
+                return ship.x === [randomX] && ship.y === [randomY]
+            }) === -1) {
+                if (randomShipType === 3) {
+                    if (randomDirection === 1) {
+                        if (randomDirectionUpDown === 1) {
+                            if (randomX === 0) {
+                                randomX += 2;
+                            } else if (randomX === 1) {
+                                randomX += 1;
+                            } else if (randomX === gridX) {
+                                randomX -= 2;
+                            } else if (randomX === (gridX - 1)) {
+                                randomX -= 1;
+                            } else if (randomX === (gridX - 2)) {
+                                randomX -= 1;
+                            }
+                            if (grid2.length === 0) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "up",
+                                    x: [randomX],
+                                    y: [randomY, randomY + 1, randomY + 2]
+                                });
+                                player2Ships += 1;
+                            } else if (grid2.findIndex((ship) => {
+                                    return check0.some(some => ship.y.includes(some))
+                                }) === -1 &&
+                                grid2.findIndex((ship) => {
+                                    return ship.x.includes(randomX)
+                                }) === -1) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "down",
+                                    x: [randomX],
+                                    y: [randomY, randomY - 1, randomY - 2]
+                                });
+                                player2Ships += 1;
+                            }
+                        } else {
+                            if (grid2.length === 0) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "up",
+                                    x: [randomX],
+                                    y: [randomY, randomY + 1, randomY + 2]
+                                });
+                                player2Ships += 1;
+                            } else if (grid2.findIndex((ship) => {
+                                    return check1.some(some => ship.y.includes(some))
+                                }) === -1 &&
+                                grid2.findIndex((ship) => {
+                                    return ship.x.includes(randomX)
+                                }) === -1) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "up",
+                                    x: [randomX],
+                                    y: [randomY, randomY + 1, randomY + 2]
+                                });
+                                player2Ships += 1;
+                            }
+                        }
+                    } else {
+                        if (randomDirectionUpDown === 1) {
+                            if (randomY === 0) {
+                                randomY += 2;
+                            } else if (randomY === 1) {
+                                randomY += 1;
+                            } else if (randomY === gridY) {
+                                randomY -= 2;
+                            } else if (randomY === (gridY - 1)) {
+                                randomY -= 1;
+                            }
+                            if (grid2.length === 0) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "left",
+                                    x: [randomX, randomX - 1, randomX - 2],
+                                    y: [randomY]
+                                });
+                                player2Ships += 1;
+                            } else if (grid2.findIndex((ship) => {
+                                    return check0.some(some => ship.x.includes(some))
+                                }) === -1 &&
+                                grid2.findIndex((ship) => {
+                                    return ship.y.includes(randomY)
+                                }) === -1) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "left",
+                                    x: [randomX, randomX - 1, randomX - 2],
+                                    y: [randomY]
+                                });
+                                player2Ships += 1;
+                            }
+                        } else {
+                            if (grid2.length === 0) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "right",
+                                    x: [randomX, randomX + 1, randomX + 2],
+                                    y: [randomY]
+                                });
+                                player2Ships += 1;
+                            } else if (grid2.findIndex((ship) => {
+                                    return check1.some(every => ship.x.includes(every))
+                                }) === -1 &&
+                                grid2.findIndex((ship) => {
+                                    return ship.y.includes(randomY)
+                                }) === -1) {
+                                grid2.push({
+                                    type: 3,
+                                    direction: "right",
+                                    x: [randomX, randomX + 1, randomX + 2],
+                                    y: [randomY]
+                                });
+                                player2Ships += 1;
+                            }
+                        }
+                    }
+                } else if (randomShipType === 2) {
+                    if (randomDirection === 1) {
+                        if (randomX === 0) {
                             randomX += 1;
-                        }else if(randomX === gridX) {
-                            randomX -= 2;
-                        }else if(randomX === (gridX - 1)) {
-                            randomX -= 1;
-                        }else if(randomX === (gridX - 2)) {
-                            randomX -= 1;
                         }
-                        if(grid2.length === 0) {
-                            grid2.push({type: 3, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
-                            player2Ships += 1;
-                        }else if(grid2.findIndex((ship) => { return check0.some(some => ship.y.includes(some)) }) === -1 &&
-                            grid2.findIndex((ship) => { return ship.x.includes(randomX) }) === -1) {
-                            grid2.push({type: 3, direction: "down", x: [randomX], y: [randomY, randomY - 1, randomY - 2]});
-                            player2Ships += 1;
+                        if (randomDirectionUpDown === 1) {
+                            if (grid2.length === 0) {
+                                grid2.push({type: 2, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
+                                player2Ships += 1;
+                            } else if (grid2.findIndex((ship) => {
+                                    return ship.x.includes(randomX)
+                                }) === -1 &&
+                                grid2.findIndex((ship) => {
+                                    return check3.some(some => ship.y.includes(some))
+                                }) === -1) {
+                                grid2.push({type: 2, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
+                                player2Ships += 1;
+                            }
+                        } else {
+                            if (grid2.length === 0) {
+                                grid2.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
+                                player2Ships += 1;
+                            } else if (grid1.findIndex((ship) => {
+                                    return ship.x.includes(randomX)
+                                }) === -1 &&
+                                grid2.findIndex(ship => {
+                                    return check2.some(some => ship.y.includes(some))
+                                }) === -1) {
+                                grid2.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
+                                player2Ships += 1;
+                            }
                         }
-                    }else {
-                        if(grid2.length === 0) {
-                            grid2.push({type: 3, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
-                            player2Ships += 1;
-                        }else if(grid2.findIndex((ship) => { return check1.some(some => ship.y.includes(some)) }) === -1 &&
-                            grid2.findIndex((ship) => { return ship.x.includes(randomX) }) === -1) {
-                            grid2.push({type: 3, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
-                            player2Ships += 1;
-                        }
-                    }
-                }else {
-                    if (randomDirectionUpDown === 1) {
-                        if(randomY === 0) {
-                            randomY += 2;
-                        }else if(randomY === 1) {
-                            randomY += 1;
-                        }else if(randomY === gridY) {
-                            randomY -= 2;
-                        }else if(randomY === (gridY - 1)) {
-                            randomY -= 1;
-                        }
-                        if(grid2.length === 0) {
-                            grid2.push({type: 3, direction: "left", x: [randomX, randomX - 1, randomX - 2], y: [randomY]});
-                            player2Ships += 1;
-                        }else if(grid2.findIndex((ship) => { return check0.some(some => ship.x.includes(some)) }) === -1 &&
-                            grid2.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
-                            grid2.push({type: 3, direction: "left", x: [randomX, randomX - 1, randomX - 2], y: [randomY]});
-                            player2Ships += 1;
-                        }
-                    }else {
-                        if(grid2.length === 0) {
-                            grid2.push({type: 3, direction: "right", x: [randomX, randomX + 1, randomX + 2], y: [randomY]});
-                            player2Ships += 1;
-                        }else if(grid2.findIndex((ship) => { return check1.some(every => ship.x.includes(every)) }) === -1 &&
-                            grid2.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
-                            grid2.push({type: 3, direction: "right", x: [randomX, randomX + 1, randomX + 2], y: [randomY]});
-                            player2Ships += 1;
-                        }
-                    }
-                }
-            }else if(randomShipType === 2) {
-                if(randomDirection === 1) {
-                    if(randomX === 0) {
-                        randomX += 1;
-                    }
-                    if (randomDirectionUpDown === 1) {
-                        if(grid2.length === 0) {
-                            grid2.push({type: 2, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
-                            player2Ships += 1;
-                        }else if(grid2.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
-                            grid2.findIndex((ship) => { return check3.some(some => ship.y.includes(some))}) === -1) {
-                            grid2.push({type: 2, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
-                            player2Ships += 1;
-                        }
-                    }else {
-                        if(grid2.length === 0) {
-                            grid2.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
-                            player2Ships += 1;
-                        }else if(grid1.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
-                            grid2.findIndex(ship => { return check2.some(some => ship.y.includes(some)) }) === -1) {
-                            grid2.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
-                            player2Ships += 1;
+                    } else {
+                        if (randomDirectionUpDown === 1) {
+                            if (randomY === 0) {
+                                randomY += 1;
+                            }
+                            if (grid2.length === 0) {
+                                grid2.push({type: 2, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
+                                player2Ships += 1;
+                            } else if (grid2.findIndex((ship) => {
+                                    return ship.x.includes(randomX)
+                                }) === -1 &&
+                                grid2.findIndex((ship) => {
+                                    return check3.some(some => ship.y.includes(some))
+                                })) {
+                                grid2.push({type: 2, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
+                                player2Ships += 1;
+                            }
+                        } else {
+                            if (grid2.length === 0) {
+                                grid2.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
+                                player2Ships += 1;
+                            } else if (grid2.findIndex((ship) => {
+                                    return ship.x.includes(randomX)
+                                }) === -1 &&
+                                grid2.findIndex((ship) => {
+                                    return check2.some(some => ship.x.includes(some))
+                                }) === -1) {
+                                grid2.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
+                                player2Ships += 1;
+                            }
                         }
                     }
-                }else {
-                    if (randomDirectionUpDown === 1) {
-                        if(randomY === 0) {
-                            randomY += 1;
-                        }
-                        if(grid2.length === 0) {
-                            grid2.push({type: 2, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
-                            player2Ships += 1;
-                        }else if(grid2.findIndex((ship) => { return ship.x.includes(randomX)}) === -1 &&
-                            grid2.findIndex((ship) => { return check3.some(some => ship.y.includes(some)) })) {
-                            grid2.push({type: 2, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
-                            player2Ships += 1;
-                        }
-                    }else {
-                        if(grid2.length === 0) {
-                            grid2.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
-                            player2Ships += 1;
-                        }else if(grid2.findIndex((ship) => { return ship.x.includes(randomX)}) === -1 &&
-                            grid2.findIndex((ship) => { return check2.some(some => ship.x.includes(some))}) === -1) {
-                            grid2.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
-                            player2Ships += 1;
-                        }
+                } else {
+                    if (grid2.length === 0) {
+                        grid2.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
+                        player2Ships += 1;
+                    } else if (grid2.findIndex((ship) => {
+                            return ship.x.includes(randomX)
+                        }) === -1 &&
+                        grid2.findIndex((ship) => {
+                            return ship.y.includes(randomY)
+                        }) === -1) {
+                        grid2.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
+                        player2Ships += 1;
                     }
-                }
-            }else {
-                if(grid2.length === 0) {
-                    grid2.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
-                    player2Ships += 1;
-                }else if(grid2.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
-                    grid2.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
-                    grid2.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
-                    player2Ships += 1;
                 }
             }
         }
