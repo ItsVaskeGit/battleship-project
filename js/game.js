@@ -66,48 +66,19 @@ function takeAShot(button) {
     let x = button.parentElement.id;
     let y = button.id;
 
+    console.log("button id", button.id)
+
     if(turn === "player1") {
         if(grid2[x][y] === 0) {
             button.style.backgroundImage = "url(../images/splash.gif)";
             button.style.backgroundSize = "cover";
             setTimeout(() => {continueCode(button)}, 500);
         }else if(grid2[x][y] === 1) {
-            let shipData = grid2Ships.filter(ship => { return ship.x === Number(x) && ship.y === Number(y) });
-            console.log(shipData);
+            let shipData = grid2Ships.find(ship => {
+                console.log(ship.x === Number(x))
+                console.log(ship.y === Number(y))
+                return ship.x === Number(x) && ship.y === Number(y) });
             if(shipData.direction === "left") {
-                if(shipData.type === 3) {
-                    grid2[x][y] = 0;
-                    grid2[x][y - 1] = 0;
-                    grid2[x][y - 2] = 0;
-                }else if(shipData.type === 2) {
-                    grid2[x][y] = 0;
-                    grid2[x][y - 1] = 0;
-                }else {
-                    grid2[x][y] = 0;
-                }
-            }else if(shipData.direction === "right") {
-                if(shipData.type === 3) {
-                    grid2[x][y] = 0;
-                    grid2[x][y + 1] = 0;
-                    grid2[x][y + 2] = 0;
-                }else if(shipData.type === 2) {
-                    grid2[x][y] = 0;
-                    grid2[x][y + 1] = 0;
-                }else {
-                    grid2[x][y] = 0;
-                }
-            }else if(shipData.direction === "up") {
-                if(shipData.type === 3) {
-                    grid2[x][y] = 0;
-                    grid2[x + 1][y] = 0;
-                    grid2[x + 2][y] = 0;
-                }else if(shipData.type === 2) {
-                    grid2[x][y] = 0;
-                    grid2[x + 1][y] = 0;
-                }else {
-                    grid2[x][y] = 0;
-                }
-            }else if(shipData.direction === "down") {
                 if(shipData.type === 3) {
                     grid2[x][y] = 0;
                     grid2[x - 1][y] = 0;
@@ -118,11 +89,47 @@ function takeAShot(button) {
                 }else {
                     grid2[x][y] = 0;
                 }
+            }else if(shipData.direction === "right") {
+                if(shipData.type === 3) {
+                    grid2[x][y] = 0;
+                    grid2[x + 1][y] = 0;
+                    grid2[x + 2][y] = 0;
+                }else if(shipData.type === 2) {
+                    grid2[x][y] = 0;
+                    grid2[x + 1][y] = 0;
+                }else {
+                    grid2[x][y] = 0;
+                }
+            }else if(shipData.direction === "up") {
+                console.log(shipData.direction)
+                if(shipData.type === 3) {
+                    grid2[x][y] = 0;
+                    grid2[x][y - 1] = 0;
+                    grid2[x][y - 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid2[x][y] = 0;
+                    grid2[x][y - 1] = 0;
+                }else {
+                    grid2[x][y] = 0;
+                }
+            }else if(shipData.direction === "down") {
+                console.log(shipData.direction)
+                if(shipData.type === 3) {
+                    grid2[x][y] = 0;
+                    grid2[x][y + 1] = 0;
+                    grid2[x][y + 2] = 0;
+                }else if(shipData.type === 2) {
+                    grid2[x][y] = 0;
+                    grid2[x][y + 1] = 0;
+                }else {
+                    grid2[x][y] = 0;
+                }
             }
             button.style.backgroundImage = "url(../images/detonation.gif)";
             button.style.backgroundSize = "cover";
             player2Ships--;
             player2Label.innerHTML = "Player 2 : " + player2Ships;
+            console.log(grid2)
             setTimeout(() => {continueCode(button)}, 500);
         }
     }else if(turn === "player2") {
@@ -265,20 +272,25 @@ function checkWinner() {
 function randomizeGrid() {
 
     let fullGridSize = gridX * gridY;
-    let numberOfShips = Math.round(fullGridSize / 3);
+    let numberOfShips = Math.round(fullGridSize / 2);
 
     console.log(numberOfShips)
 
     for(let i =  0; i < numberOfShips; i++) {
-        let randomX = Math.round(Math.random() * (gridX  - 3));
-        let randomY = Math.round(Math.random() * (gridY  - 3));
+        let randomX = Math.floor(Math.random() * (gridX + 1 - 1));
+        let randomY = Math.floor(Math.random() * (gridY + 1 - 1));
         let randomShipType = Math.floor(Math.random() * (3 - 1 + 1) + 1);
         let randomDirection = Math.floor(Math.random() * (2 - 1 + 1) + 1);
         let randomDirectionUpDown = Math.floor(Math.random() * (2 - 1 + 1) + 1);
 
-        console.log(randomX, randomY, randomShipType, randomDirection)
+        // console.log(randomX, randomY, randomShipType, randomDirection)
 
-        if(grid2[randomX][randomY] === 0) {
+        let check0 = [randomX, randomX - 1, randomX - 2];
+        let check1 = [randomX, randomX + 1, randomX + 2];
+        let check2 = [randomX, randomX + 1];
+        let check3 = [randomY, randomY - 1];
+
+        if(grid2Ships.findIndex((ship) => { return ship.x === [randomX] && ship.y === [randomY]}) === -1) {
             if(randomShipType === 3) {
                 if(randomDirection === 1) {
                     if (randomDirectionUpDown === 1) {
@@ -291,22 +303,24 @@ function randomizeGrid() {
                         }else if(randomX === (gridX - 1)) {
                             randomX -= 1;
                         }else if(randomX === (gridX - 2)) {
-                            randomX -= 2;
+                            randomX -= 1;
                         }
-                        if(grid2[randomX - 1][randomY] === 0 && grid2[randomX - 2][randomY] === 0) {
-                              grid2[randomX][randomY] = 1;
-                              grid2[randomX - 1][randomY] = 1;
-                              grid2[randomX - 2][randomY] = 1;
-                              player2Ships += 1;
-                              grid2Ships.push({type: 2, direction: "down", x: randomX, y: randomY});
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
+                            player2Ships += 1;
+                        }else if(grid2Ships.findIndex((ship) => { return check0.some(some => ship.y.includes(some)) }) === -1 &&
+                            grid2Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1) {
+                            grid2Ships.push({type: 2, direction: "down", x: [randomX], y: [randomY, randomY - 1, randomY - 2]});
+                            player2Ships += 1;
                         }
                     }else {
-                        if(grid2[randomX + 1][randomY] === 0 && grid2[randomX + 2][randomY] === 0) {
-                            grid2[randomX][randomY] = 1;
-                            grid2[randomX + 1][randomY] = 1;
-                            grid2[randomX + 2][randomY] = 1;
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
                             player2Ships += 1;
-                            grid2Ships.push({type: 2, direction: "up", x: randomX, y: randomY});
+                        }else if(grid2Ships.findIndex((ship) => { return check1.some(some => ship.y.includes(some)) }) === -1 &&
+                            grid2Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1) {
+                            grid2Ships.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
+                            player2Ships += 1;
                         }
                     }
                 }else {
@@ -320,20 +334,22 @@ function randomizeGrid() {
                         }else if(randomY === (gridY - 1)) {
                             randomY -= 1;
                         }
-                        if(grid2[randomX][randomY - 1] === 0 && grid2[randomX][randomY - 2] === 0) {
-                            grid2[randomX][randomY] = 1;
-                            grid2[randomX][randomY - 1] = 1;
-                            grid2[randomX][randomY - 2] = 1;
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 2, direction: "left", x: [randomX, randomX - 1, randomX - 2], y: [randomY]});
                             player2Ships += 1;
-                            grid2Ships.push({type: 2, direction: "left", x: randomX, y: randomY});
+                        }else if(grid2Ships.findIndex((ship) => { return check0.some(some => ship.x.includes(some)) }) === -1 &&
+                            grid2Ships.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
+                            grid2Ships.push({type: 2, direction: "left", x: [randomX, randomX - 1, randomX - 2], y: [randomY]});
+                            player2Ships += 1;
                         }
                     }else {
-                        if(grid2[randomX][randomY + 1] === 0 && grid2[randomX][randomY + 2] === 0) {
-                            grid2[randomX][randomY] = 1;
-                            grid2[randomX][randomY + 1] = 1;
-                            grid2[randomX][randomY + 2] = 1;
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 2, direction: "right", x: [randomX, randomX + 1, randomX + 2], y: [randomY]});
                             player2Ships += 1;
-                            grid2Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
+                        }else if(grid2Ships.findIndex((ship) => { return check1.some(every => ship.x.includes(every)) }) === -1 &&
+                            grid2Ships.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
+                            grid2Ships.push({type: 2, direction: "right", x: [randomX, randomX + 1, randomX + 2], y: [randomY]});
+                            player2Ships += 1;
                         }
                     }
                 }
@@ -343,18 +359,22 @@ function randomizeGrid() {
                         randomX += 1;
                     }
                     if (randomDirectionUpDown === 1) {
-                        if(grid2[randomX - 1][randomY] === 0) {
-                            grid2[randomX][randomY] = 1;
-                            grid2[randomX - 1][randomY] = 1;
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 1, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
                             player2Ships += 1;
-                            grid2Ships.push({type: 2, direction: "down", x: randomX, y: randomY});
+                        }else if(grid2Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
+                            grid2Ships.findIndex((ship) => { return check3.some(some => ship.y.includes(some))}) === -1) {
+                            grid2Ships.push({type: 1, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
+                            player2Ships += 1;
                         }
                     }else {
-                        if(grid2[randomX + 1][randomY] === 0) {
-                            grid2[randomX][randomY] = 1;
-                            grid2[randomX + 1][randomY] = 1;
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 1, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
                             player2Ships += 1;
-                            grid2Ships.push({type: 2, direction: "up", x: randomX, y: randomY});
+                        }else if(grid1Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
+                            grid2Ships.findIndex(ship => { return check2.some(some => ship.y.includes(some)) }) === -1) {
+                            grid2Ships.push({type: 1, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
+                            player2Ships += 1;
                         }
                     }
                 }else {
@@ -362,31 +382,37 @@ function randomizeGrid() {
                         if(randomY === 0) {
                             randomY += 1;
                         }
-                        if(grid2[randomX][randomY - 1] === 0) {
-                            grid2[randomX][randomY] = 1;
-                            grid2[randomX][randomY - 1] = 1;
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 1, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
                             player2Ships += 1;
-                            grid2Ships.push({type: 2, direction: "left", x: randomX, y: randomY});
+                        }else if(grid2Ships.findIndex((ship) => { return ship.x.includes(randomX)}) === -1 &&
+                            grid2Ships.findIndex((ship) => { return check3.some(some => ship.y.includes(some)) })) {
+                            grid2Ships.push({type: 1, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
+                            player2Ships += 1;
                         }
                     }else {
-                        if(grid2[randomX][randomY + 1] === 0) {
-                            grid2[randomX][randomY] = 1;
-                            grid2[randomX][randomY + 1] = 1;
+                        if(grid2Ships.length === 0) {
+                            grid2Ships.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
                             player2Ships += 1;
-                            grid2Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
+                        }else if(grid2Ships.findIndex((ship) => { return ship.x.includes(randomX)}) === -1 &&
+                            grid2Ships.findIndex((ship) => { return check2.some(some => ship.x.includes(some))}) === -1) {
+                            grid2Ships.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
+                            player2Ships += 1;
                         }
                     }
                 }
             }else {
-                grid2[randomX][randomY] = 1;
-                player2Ships += 1;
-                grid2Ships.push({type: 1, direction: "neutral", x: randomX, y: randomY});
+                if(grid2Ships.length === 0) {
+                    grid2Ships.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
+                    player2Ships += 1;
+                }else if(grid2Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
+                    grid2Ships.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
+                    grid2Ships.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
+                    player2Ships += 1;
+                }
             }
         }
     }
-
-    console.log(player2Ships)
-    console.log(grid2Ships);
 
     if(player1GridRandom) {
         for(let i =  0; i < numberOfShips; i++) {
@@ -396,9 +422,14 @@ function randomizeGrid() {
             let randomDirection = Math.floor(Math.random() * (2 - 1 + 1) + 1);
             let randomDirectionUpDown = Math.floor(Math.random() * (2 - 1 + 1) + 1);
 
-            console.log(randomX, randomY, randomShipType, randomDirection)
+            // console.log(randomX, randomY, randomShipType, randomDirection)
 
-            if(grid1[randomX][randomY] === 0) {
+            let check0 = [randomX, randomX - 1, randomX - 2];
+            let check1 = [randomX, randomX + 1, randomX + 2];
+            let check2 = [randomX, randomX + 1];
+            let check3 = [randomY, randomY - 1];
+
+            if(grid1Ships.findIndex((ship) => { return ship.x === [randomX] && ship.y === [randomY]}) === -1) {
                 if(randomShipType === 3) {
                     if(randomDirection === 1) {
                         if (randomDirectionUpDown === 1) {
@@ -413,20 +444,22 @@ function randomizeGrid() {
                             }else if(randomX === (gridX - 2)) {
                                 randomX -= 1;
                             }
-                            if(grid1[randomX - 1][randomY] === 0 && grid1[randomX - 2][randomY] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX - 1][randomY] = 1;
-                                grid1[randomX - 2][randomY] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 2, direction: "down", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return check0.some(some => ship.y.includes(some)) }) === -1 &&
+                                grid1Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1) {
+                                grid1Ships.push({type: 2, direction: "down", x: [randomX], y: [randomY, randomY - 1, randomY - 2]});
+                                player1Ships += 1;
                             }
                         }else {
-                            if(grid1[randomX + 1][randomY] === 0 && grid1[randomX + 2][randomY] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX + 1][randomY] = 1;
-                                grid1[randomX + 2][randomY] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 2, direction: "up", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return check1.some(some => ship.y.includes(some)) }) === -1 &&
+                                grid1Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1) {
+                                grid1Ships.push({type: 2, direction: "up", x: [randomX], y: [randomY, randomY + 1, randomY + 2]});
+                                player1Ships += 1;
                             }
                         }
                     }else {
@@ -440,20 +473,22 @@ function randomizeGrid() {
                             }else if(randomY === (gridY - 1)) {
                                 randomY -= 1;
                             }
-                            if(grid1[randomX][randomY - 1] === 0 && grid1[randomX][randomY - 2] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX][randomY - 1] = 1;
-                                grid1[randomX][randomY - 2] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 2, direction: "left", x: [randomX, randomX - 1, randomX - 2], y: [randomY]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 2, direction: "left", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return check0.some(some => ship.x.includes(some)) }) === -1 &&
+                                grid1Ships.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
+                                grid1Ships.push({type: 2, direction: "left", x: [randomX, randomX - 1, randomX - 2], y: [randomY]});
+                                player1Ships += 1;
                             }
                         }else {
-                            if(grid1[randomX][randomY + 1] === 0 && grid1[randomX][randomY + 2] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX][randomY + 1] = 1;
-                                grid1[randomX][randomY + 2] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 2, direction: "right", x: [randomX, randomX + 1, randomX + 2], y: [randomY]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return check1.some(every => ship.x.includes(every)) }) === -1 &&
+                                grid1Ships.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
+                                grid1Ships.push({type: 2, direction: "right", x: [randomX, randomX + 1, randomX + 2], y: [randomY]});
+                                player1Ships += 1;
                             }
                         }
                     }
@@ -463,18 +498,22 @@ function randomizeGrid() {
                             randomX += 1;
                         }
                         if (randomDirectionUpDown === 1) {
-                            if(grid1[randomX - 1][randomY] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX - 1][randomY] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 1, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 1, direction: "down", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
+                                grid1Ships.findIndex((ship) => { return check3.some(some => ship.y.includes(some))}) === -1) {
+                                grid1Ships.push({type: 1, direction: "down", x: [randomX], y: [randomY, randomY - 1]});
+                                player1Ships += 1;
                             }
                         }else {
-                            if(grid1[randomX + 1][randomY] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX + 1][randomY] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 1, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 1, direction: "up", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
+                                grid1Ships.findIndex(ship => { return check2.some(some => ship.y.includes(some)) }) === -1) {
+                                grid1Ships.push({type: 1, direction: "up", x: [randomX], y: [randomY, randomY + 1]});
+                                player1Ships += 1;
                             }
                         }
                     }else {
@@ -482,29 +521,41 @@ function randomizeGrid() {
                             if(randomY === 0) {
                                 randomY += 1;
                             }
-                            if(grid1[randomX][randomY - 1] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX][randomY - 1] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 1, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 1, direction: "left", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return ship.x.includes(randomX)}) === -1 &&
+                            grid1Ships.findIndex((ship) => { return check3.some(some => ship.y.includes(some)) })) {
+                                grid1Ships.push({type: 1, direction: "left", x: [randomX], y: [randomY, randomY - 1]});
+                                player1Ships += 1;
                             }
                         }else {
-                            if(grid1[randomX][randomY + 1] === 0) {
-                                grid1[randomX][randomY] = 1;
-                                grid1[randomX][randomY + 1] = 1;
+                            if(grid1Ships.length === 0) {
+                                grid1Ships.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
                                 player1Ships += 1;
-                                grid1Ships.push({type: 2, direction: "right", x: randomX, y: randomY});
+                            }else if(grid1Ships.findIndex((ship) => { return ship.x.includes(randomX)}) === -1 &&
+                            grid1Ships.findIndex((ship) => { return check2.some(some => ship.x.includes(some))}) === -1) {
+                                grid1Ships.push({type: 2, direction: "right", x: [randomX], y: [randomY, randomY + 1]});
+                                player1Ships += 1;
                             }
                         }
                     }
                 }else {
-                    grid1[randomX][randomY] = 1;
-                    player1Ships += 1;
-                    grid1Ships.push({type: 1, direction: "neutral", x: randomX, y: randomY});
+                    if(grid1Ships.length === 0) {
+                        grid1Ships.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
+                        player1Ships += 1;
+                    }else if(grid1Ships.findIndex((ship) => { return ship.x.includes(randomX) }) === -1 &&
+                    grid1Ships.findIndex((ship) => { return ship.y.includes(randomY) }) === -1) {
+                        grid1Ships.push({type: 1, direction: "neutral", x: [randomX], y: [randomY]});
+                        player1Ships += 1;
+                    }
                 }
             }
         }
     }
+
+    console.log(grid1Ships)
+    console.log(grid2Ships)
 
     player1Label.innerHTML = "Player 1 : " + player1Ships;
     player2Label.innerHTML = "Player 2 : " + player2Ships;

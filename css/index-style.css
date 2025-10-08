@@ -3,6 +3,10 @@
     font-family: "Alan Sans", sans-serif;
 }
 
+.grid-box {
+    margin: 10px 40px 20px 40px;
+}
+
 .splashscreen {
     display: flex;
     justify-content: space-around;

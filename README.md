@@ -14,7 +14,7 @@ Meanwhile, the player will have a choice. User grid can be either randomly gener
 
 ### Ships
 
-The game will have 3 sizes of ships: Large (Cruiser), Medium (Fighter ship), Small (Logistics ship). Each one will have a different size on the grid. Large will take 4 spaces, Medium 3 spaces and Small 2 spaces.
+The game will have 2 sizes of ships: Big (Fighter ship), Small (Logistics ship). Each one will have a different size on the grid. Large will take 4 spaces, Medium 3 spaces and Small 2 spaces.
 
 Ships can be positioned both horizontally or vertically on the actual grid.
 
