@@ -2,10 +2,6 @@ let gridX = 0;
 
 let gridY = 0;
 
-let grid1 = [];
-
-let grid2 = [];
-
 let gameType = "pve";
 
 let player1GridRandom = true;
