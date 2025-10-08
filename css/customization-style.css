@@ -1,0 +1,34 @@
+* {
+    background-color: lightgray;
+    font-family: "Alan Sans", sans-serif;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.splashscreen {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.column:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.column {
+    margin: 20px 30px 20px 30px;
+    padding: 50px 50px 50px 50px;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-size: 70px;
+}

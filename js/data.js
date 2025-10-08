@@ -6,6 +6,8 @@ let gameType = "pve";
 
 let player1GridRandom = true;
 
+let player2GridRandom = true;
+
 let player1Wins = 0;
 
 let player2Wins = 0;

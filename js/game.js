@@ -48,7 +48,6 @@ function takeAShot(button) {
     let y = button.parentElement.id;
 
     if(turn === "player1") {
-        console.log("button coordinates", button.id, button.parentElement.id)
         if(grid2.findIndex(ship => { return ship.x.includes(Number(x))
             && ship.y.includes(Number(y))}) === -1) {
             button.style.backgroundImage = "url(../images/splash.gif)";
@@ -117,16 +116,12 @@ function randomizeGrid() {
     let fullGridSize = gridX * gridY;
     let numberOfShips = Math.round(fullGridSize / 2);
 
-    console.log(numberOfShips)
-
     for(let i =  0; i < numberOfShips; i++) {
         let randomX = Math.floor(Math.random() * gridX);
         let randomY = Math.floor(Math.random() * gridY);
         let randomShipType = Math.floor(Math.random() * (3 - 1 + 1) + 1);
         let randomDirection = Math.floor(Math.random() * (2 - 1 + 1) + 1);
         let randomDirectionUpDown = Math.floor(Math.random() * (2 - 1 + 1) + 1);
-
-        // console.log(randomX, randomY, randomShipType, randomDirection)
 
         let check0 = [randomX, randomX - 1, randomX - 2];
         let check1 = [randomX, randomX + 1, randomX + 2];
@@ -265,8 +260,6 @@ function randomizeGrid() {
             let randomDirection = Math.floor(Math.random() * (2 - 1 + 1) + 1);
             let randomDirectionUpDown = Math.floor(Math.random() * (2 - 1 + 1) + 1);
 
-            // console.log(randomX, randomY, randomShipType, randomDirection)
-
             let check0 = [randomX, randomX - 1, randomX - 2];
             let check1 = [randomX, randomX + 1, randomX + 2];
             let check2 = [randomX, randomX + 1];
@@ -397,7 +390,6 @@ function randomizeGrid() {
         }
     }
 
-    console.log(grid1)
     console.log(grid2)
 
     player1Label.innerHTML = "Player 1 : " + player1Ships;
