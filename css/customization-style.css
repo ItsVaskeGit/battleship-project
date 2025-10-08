@@ -32,3 +32,44 @@ h1, h2 {
     border-radius: 20px;
     font-size: 70px;
 }
+
+.ships {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.ship {
+    padding: 20px 40px 20px 40px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.ship:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.next {
+    display: flex;
+    justify-content: center;
+}
+
+.guide {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 120px;
+}
+
+#next-label {
+    margin-top: 100px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 20px 40px 20px 40px;
+}
+
+#next-label:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}

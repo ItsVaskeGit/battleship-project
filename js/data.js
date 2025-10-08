@@ -8,6 +8,10 @@ let player1GridRandom = true;
 
 let player2GridRandom = true;
 
+let grid1 = [];
+
+let grid2 = [];
+
 let player1Wins = 0;
 
 let player2Wins = 0;
