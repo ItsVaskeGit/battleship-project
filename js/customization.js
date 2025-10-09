@@ -5,9 +5,6 @@ let next = document.querySelector(".next");
 let buttons = [];
 let turn = "player1";
 
-gridX = 7;
-gridY = 7;
-
 let dragged = null;
 let currentDragOver = null;
 
@@ -236,9 +233,7 @@ function dragOver(height, width, ship) {;
             overlayImage.style.left = (currentDragOver[0].getBoundingClientRect().left - gridBox.getBoundingClientRect().left - 255) + "px";
             overlayImage.style.top = (currentDragOver[0].getBoundingClientRect().top - gridBox.getBoundingClientRect().top - 25) + "px";
             overlayImage.style.width = (currentDragOver[0].scrollWidth * 5 - 15) + "px";
-            console.log((currentDragOver[0].scrollWidth * 3) + "px")
             overlayImage.style.height = (currentDragOver[0].getBoundingClientRect().bottom - currentDragOver[2].top) + "px";
-            console.log((currentDragOver[0].getBoundingClientRect().bottom - currentDragOver[2].top) + "px")
             gridBox.appendChild(overlayImage);
             currentDragOver[0].style.cursor = "default";
             currentDragOver[1].style.cursor = "default";
@@ -257,9 +252,7 @@ function dragOver(height, width, ship) {;
             overlayImage.style.left = (currentDragOver[2].getBoundingClientRect().left - gridBox.getBoundingClientRect().left - 255) + "px";
             overlayImage.style.top = (currentDragOver[2].getBoundingClientRect().top - gridBox.getBoundingClientRect().top - 25) + "px";
             overlayImage.style.width = (currentDragOver[0].scrollWidth * 5 - 15) + "px";
-            console.log((currentDragOver[0].scrollWidth * 3) + "px")
             overlayImage.style.height = (currentDragOver[0].getBoundingClientRect().bottom - currentDragOver[2].top) + "px";
-            console.log((currentDragOver[0].getBoundingClientRect().bottom - currentDragOver[2].top) + "px")
             gridBox.appendChild(overlayImage);
             currentDragOver[0].style.cursor = "default";
             currentDragOver[1].style.cursor = "default";
@@ -303,9 +296,7 @@ function dragOver(height, width, ship) {;
             overlayImage.style.left = (currentDragOver[0].getBoundingClientRect().left - gridBox.getBoundingClientRect().left - 145) + "px";
             overlayImage.style.top = (currentDragOver[0].getBoundingClientRect().top - gridBox.getBoundingClientRect().top + 90) + "px";
             overlayImage.style.width = (currentDragOver[0].scrollWidth * 3 + 35) + "px";
-            console.log((currentDragOver[0].scrollWidth * 3) + "px")
             overlayImage.style.height = (currentDragOver[0].scrollHeight) + "px";
-            console.log((currentDragOver[0].getBoundingClientRect().bottom - currentDragOver[1].top) + "px")
             gridBox.appendChild(overlayImage);
             currentDragOver[0].style.cursor = "default";
             currentDragOver[1].style.cursor = "default";
@@ -323,7 +314,6 @@ function dragOver(height, width, ship) {;
             overlayImage.style.left = (currentDragOver[1].getBoundingClientRect().left - gridBox.getBoundingClientRect().left - 145) + "px";
             overlayImage.style.top = (currentDragOver[1].getBoundingClientRect().top - gridBox.getBoundingClientRect().top + 90) + "px";
             overlayImage.style.width = (currentDragOver[0].scrollWidth * 3 + 35) + "px";
-            console.log((currentDragOver[0].scrollWidth * 3) + "px")
             overlayImage.style.height = (currentDragOver[0].scrollHeight) + "px";
             gridBox.appendChild(overlayImage);
             currentDragOver[0].style.cursor = "default";

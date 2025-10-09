@@ -4,9 +4,6 @@ let player1Label = document.querySelector("#player-1");
 let player2Label = document.querySelector("#player-2")
 let buttons = [];
 
-gridX = 7;
-gridY = 7;
-
 let player1Ships = 0;
 let player2Ships = 0;
 let turn = 'player1';
@@ -466,8 +463,6 @@ function randomizeGrid() {
             }
         }
     }
-
-    console.log(grid2)
 
     player1Label.innerHTML = "Player 1 : " + player1Ships;
     player2Label.innerHTML = "Player 2 : " + player2Ships;
