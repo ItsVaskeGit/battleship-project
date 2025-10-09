@@ -406,6 +406,7 @@ next.addEventListener("click", () => {
             }
             gridBox.appendChild(row);
         }
+        console.log(buttons)
         turnLabel.innerHTML = "Turn: Player 2";
     } else if (turn === "player2" && !player1GridRandom && data.grid1.length === 0) {
         turn = "player1";
@@ -426,7 +427,26 @@ next.addEventListener("click", () => {
             gridBox.appendChild(row);
             turnLabel.innerHTML = "Turn: Player 1";
         }
-    } else if (turn === "player2" && !player1GridRandom && !player2GridRandom) {
+    } else if (turn === "player1" && !player1GridRandom && player2GridRandom) {
+        let data = { gridX: gridX,
+            gridY: gridY,
+            player1GridRandom: player1GridRandom,
+            player2GridRandom: player2GridRandom,
+            gameType: gameType,
+            grid1: grid1,
+            grid2: grid2,
+            player1Wins: player1Wins,
+            player2Wins: player2Wins,
+            cpuWins: cpuWins,
+            player1WinRatio: player1WinRatio,
+            player2WinRatio: player2WinRatio,
+            cpuWinRatio: cpuWinRatio,
+            gamesPlayed: gamesPlayed,
+            games: games};
+        localStorage.removeItem("data");
+        localStorage.setItem("data", JSON.stringify(data));
+        window.location.href = "../pages/game.html";
+    }else if(turn === "player2" && grid1.length > 0 && grid2.length > 0) {
         let data = { gridX: gridX,
             gridY: gridY,
             player1GridRandom: player1GridRandom,
