@@ -6,7 +6,7 @@ let buttons = [];
 
 let turn = 'player1';
 
-let data = localStorage.getItem("data");
+let data = JSON.parse(localStorage.getItem("data"));
 
 let gridX = data.gridX;
 let gridY = data.gridY;
