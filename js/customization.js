@@ -395,6 +395,7 @@ function addEntry(xAxisWithoutDuplicates, yAxisWithoutDuplicates, type, ship) {
 }
 
 next.addEventListener("click", () => {
+    console.log(gameType)
     if (turn === "player1" && !player2GridRandom && grid2.length === 0) {
         turn = "player2";
         gridBox.innerHTML = "";
