@@ -5,9 +5,6 @@ let buttons = [];
 let turn = 'player1';
 let currentRotation = 0;
 
-let lastX;
-let lastY;
-
 gridX = 7;
 gridY = 7;
 
@@ -50,29 +47,31 @@ ships.forEach((ship) => {
         ship.style.margin = "20px 30px 20px 30px";
         if(dragged.id === "cruiser") {
             console.log(currentDragOver);
+            let xAxis = [];
+            let yAxis = [];
+            xAxis.push(currentDragOver[0].id, currentDragOver[1].id, currentDragOver[2].id);
+            yAxis.push(currentDragOver[0].parentElement.id,
+                currentDragOver[1].parentElement.id, currentDragOver[2].parentElement.id);
+            let xAxisWithoutDuplicates = xAxis.filter((item, index) => xAxis.indexOf(item) === index);
+            let yAxisWithoutDuplicates = yAxis.filter((item, index) => yAxis.indexOf(item) === index);
             currentDragOver[0].replaceWith(ship);
             currentDragOver[1].remove();
             currentDragOver[2].remove();
-            if(turn === "player1") {
-
-            }else {
-
-            }
+            addEntry(xAxisWithoutDuplicates.map(Number), yAxisWithoutDuplicates.map(Number));
         }else if(dragged.id === "battleship") {
+            let xAxis = [];
+            let yAxis = [];
+            xAxis.push(currentDragOver[0].id, currentDragOver[1].id);
+            yAxis.push(currentDragOver[0].parentElement.id,
+                currentDragOver[1].parentElement.id);
+            let xAxisWithoutDuplicates = xAxis.filter((item, index) => xAxis.indexOf(item) === index);
+            let yAxisWithoutDuplicates = yAxis.filter((item, index) => yAxis.indexOf(item) === index);
             currentDragOver[0].replaceWith(ship);
             currentDragOver[1].remove();
-            if(turn === "player1") {
-
-            }else {
-
-            }
+            addEntry(xAxisWithoutDuplicates.map(Number), yAxisWithoutDuplicates.map(Number));
         }else {
             currentDragOver[0].replaceWith(ship);
-            if(turn === "player1") {
-
-            }else {
-
-            }
+            addEntry([Number(currentDragOver[0].id)], [Number(currentDragOver[0].parentElement.id)]);
         }
         ship.draggable = false;
         ship.removeEventListener("click", onClick);
@@ -160,4 +159,30 @@ function onClick(e) {
         currentRotation = 0;
     }
     e.target.style.rotate =  currentRotation + "deg";
+}
+
+function addEntry(xAxisWithoutDuplicates, yAxisWithoutDuplicates) {
+    if(turn === "player1") {
+        if(dragged.rotate === "90deg") {
+            grid1.push({type: 3, direction: "down", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }else if(dragged.rotate === "180") {
+            grid1.push({type: 3, direction: "left", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }else if(dragged.rotate === "270") {
+            grid1.push({type: 3, direction: "up", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }else {
+            grid1.push({type: 3, direction: "right", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }
+        console.log(grid1);
+    }else {
+        if(dragged.rotate === "90deg") {
+            grid2.push({type: 3, direction: "down", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }else if(dragged.rotate === "180") {
+            grid2.push({type: 3, direction: "left", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }else if(dragged.rotate === "270") {
+            grid2.push({type: 3, direction: "up", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }else {
+            grid2.push({type: 3, direction: "right", x: xAxisWithoutDuplicates, y: yAxisWithoutDuplicates});
+        }
+        console.log(grid2);
+    }
 }
