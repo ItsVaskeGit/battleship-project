@@ -22,7 +22,7 @@ h1, h2 {
 
 .column:hover {
     background-color: darkgray;
-    cursor: pointer;
+    cursor: grab;
 }
 
 .column {

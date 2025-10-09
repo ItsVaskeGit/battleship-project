@@ -37,18 +37,19 @@ h1, h2 {
     display: flex;
     justify-content: space-evenly;
     margin-top: 70px;
-    margin-bottom: 70px;
+    margin-bottom: 150px;
 }
 
 .ship {
     padding: 20px 40px 20px 40px;
     border: 2px solid black;
     border-radius: 20px;
+    /*position: absolute;*/
 }
 
 .ship:hover {
     background-color: darkgray;
-    cursor: pointer;
+    cursor: grab;
 }
 
 .next {
@@ -72,4 +73,19 @@ h1, h2 {
 #next-label:hover {
     background-color: darkgray;
     cursor: pointer;
+}
+
+#cruiser {
+    background-image: url("../images/cruiser.png");
+    background-size: cover;
+}
+
+#battleship {
+    background-image: url("../images/battleship.png");
+    background-size: cover;
+}
+
+#boat {
+    background-image: url("../images/boat.png");
+    background-size: auto;
 }
