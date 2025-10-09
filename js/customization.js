@@ -231,9 +231,6 @@ function dragOver(height, width, ship) {;
     if (dragged.classList[1] === "cruiser") {
         let xAxis = [];
         let yAxis = [];
-        console.log(currentDragOver[0].parentElement);
-        console.log(currentDragOver[1].parentElement);
-        console.log(currentDragOver[2].parentElement);
         xAxis.push(currentDragOver[0].id, currentDragOver[1].id, currentDragOver[2].id);
         yAxis.push(currentDragOver[0].parentElement.id,
             currentDragOver[1].parentElement.id, currentDragOver[2].parentElement.id);
@@ -417,7 +414,6 @@ next.addEventListener("click", () => {
             gridBox.appendChild(row);
         }
         generateButtonListeners();
-        console.log(buttons)
         turnLabel.innerHTML = "Turn: Player 2";
     } else if (turn === "player2" && !player1GridRandom && data.grid1.length === 0) {
         turn = "player1";
