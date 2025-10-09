@@ -1,6 +1,8 @@
 let gridInputs = document.querySelectorAll(".grid");
 let startButtons = document.querySelectorAll(".start-button");
 let randomize = document.querySelector(".randomize");
+let gridX = document.querySelector("#grid-x");
+let gridY = document.querySelector("#grid-x");
 let player1Randomized = document.querySelector("#player1-randomize");
 let player2Randomized = document.querySelector("#player2-randomize");
 
@@ -28,13 +30,8 @@ randomize.addEventListener("click", () => {
 
 startButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        gridInputs.forEach((input) => {
-            if(input.id === "grid-x") {
-                data.gridX = input.value;
-            }else {
-                data.gridY = input.value;
-            }
-        });
+        data.gridX = gridX.value;
+        data.gridY = gridY.value;
         let fetchedData = JSON.parse(localStorage.getItem("data"));
         if(fetchedData !== null) {
             data.player1Wins = fetchedData.player1Wins;
