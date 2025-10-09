@@ -6,6 +6,7 @@
 .row {
     display: flex;
     justify-content: center;
+    position: static;
 }
 
 .splashscreen {
@@ -75,17 +76,17 @@ h1, h2 {
     cursor: pointer;
 }
 
-#cruiser {
+.cruiser {
     background-image: url("../images/cruiser.png");
     background-size: cover;
 }
 
-#battleship {
+.battleship {
     background-image: url("../images/battleship.png");
     background-size: cover;
 }
 
-#boat {
+.boat {
     background-image: url("../images/boat.png");
     background-size: cover;
 }
