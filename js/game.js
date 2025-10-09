@@ -118,7 +118,8 @@ function checkWinner() {
             if(player1Ships === 0) {
                 games.push({winner: 'CPU', type: 'PvE', player1Ships: player1Ships, player2Ships: '0', cpuShips: player2Ships});
                 cpuWins++;
-            }else if(player2Ships === 0) {
+            }
+            if(player2Ships === 0) {
                 games.push({winner: 'Player 1', type: 'PvE', player1Ships: player1Ships, player2Ships: '0', cpuShips: player2Ships})
                 player1Wins++;
             }
@@ -133,7 +134,8 @@ function checkWinner() {
                     cpuShips: '0'
                 })
                 player2Wins++;
-            } else if (player2Ships === 0) {
+            }
+            if (player2Ships === 0) {
                 games.push({
                     winner: 'Player 1',
                     type: 'PvP',
@@ -144,6 +146,7 @@ function checkWinner() {
                 player1Wins++
             }
         }
+        gamesPlayed++;
         finishGame()
     }
 }
@@ -554,9 +557,9 @@ function finishGame() {
         player1Wins: player1Wins,
         player2Wins: player2Wins,
         cpuWins: cpuWins,
-        player1WinRatio: player1WinRatio,
-        player2WinRatio: player2WinRatio,
-        cpuWinRatio: cpuWinRatio,
+        player1WinRatio: player1Wins / gamesPlayed,
+        player2WinRatio: player2Wins / gamesPlayed,
+        cpuWinRatio: cpuWins / gamesPlayed,
         gamesPlayed: gamesPlayed,
         games: games};
     localStorage.removeItem("data");
