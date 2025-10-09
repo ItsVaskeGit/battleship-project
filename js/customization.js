@@ -43,6 +43,8 @@ for (let i = 0; i < gridX; i++) {
     gridBox.appendChild(row);
 }
 
+generateButtonListeners();
+
 ships.forEach((ship) => {
     let height = buttons[0].scrollHeight;
     let width = buttons[0].scrollWidth;
@@ -56,156 +58,158 @@ ships.forEach((ship) => {
     ship.addEventListener("click", onClick);
 });
 
-buttons.forEach((button) => {
-    button.addEventListener("dragover", () => {
-        if (dragged.classList[[1]] === "cruiser") {
-            let nextButton;
-            let nextNextButton;
-            if (dragged.style.rotate === "90deg") {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id) + 1
-                                    && Number(currentButton.id) === Number(button.id);
-                            } else {
-                                return false;
-                            }
-                        });
-                nextNextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id) + 2
-                                    && Number(currentButton.id) === Number(button.id);
-                            } else {
-                                return false;
-                            }
-                        });
-            } else if (dragged.style.rotate === "180deg") {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
-                                    && Number(currentButton.id) === Number(button.id) - 1;
-                            } else {
-                                return false;
-                            }
-                        });
-                nextNextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
-                                    && Number(currentButton.id) === Number(button.id) - 2;
-                            } else {
-                                return false;
-                            }
-                        });
-            } else if (dragged.style.rotate === "270deg") {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id) - 1
-                                    && Number(currentButton.id) === Number(button.id);
-                            } else {
-                                return false;
-                            }
-                        });
-                nextNextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id) - 2
-                                    && Number(currentButton.id) === Number(button.id);
-                            } else {
-                                return false;
-                            }
-                        });
-            } else {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
-                                    && Number(currentButton.id) === Number(button.id) + 1;
-                            } else {
-                                return false;
-                            }
-                        });
-                nextNextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if (currentButton !== null) {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
-                                    && Number(currentButton.id) === Number(button.id) + 2;
-                            } else {
-                                return false;
-                            }
-                        });
+function generateButtonListeners() {
+    buttons.forEach((button) => {
+        button.addEventListener("dragover", () => {
+            if (dragged.classList[[1]] === "cruiser") {
+                let nextButton;
+                let nextNextButton;
+                if (dragged.style.rotate === "90deg") {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id) + 1
+                                        && Number(currentButton.id) === Number(button.id);
+                                } else {
+                                    return false;
+                                }
+                            });
+                    nextNextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id) + 2
+                                        && Number(currentButton.id) === Number(button.id);
+                                } else {
+                                    return false;
+                                }
+                            });
+                } else if (dragged.style.rotate === "180deg") {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
+                                        && Number(currentButton.id) === Number(button.id) - 1;
+                                } else {
+                                    return false;
+                                }
+                            });
+                    nextNextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
+                                        && Number(currentButton.id) === Number(button.id) - 2;
+                                } else {
+                                    return false;
+                                }
+                            });
+                } else if (dragged.style.rotate === "270deg") {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id) - 1
+                                        && Number(currentButton.id) === Number(button.id);
+                                } else {
+                                    return false;
+                                }
+                            });
+                    nextNextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id) - 2
+                                        && Number(currentButton.id) === Number(button.id);
+                                } else {
+                                    return false;
+                                }
+                            });
+                } else {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
+                                        && Number(currentButton.id) === Number(button.id) + 1;
+                                } else {
+                                    return false;
+                                }
+                            });
+                    nextNextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null) {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
+                                        && Number(currentButton.id) === Number(button.id) + 2;
+                                } else {
+                                    return false;
+                                }
+                            });
+                }
+                if (button.className === "column") {
+                    currentDragOver = [button, nextButton, nextNextButton];
+                }
+            } else if (dragged.classList[1] === "battleship") {
+                let nextButton;
+                if (dragged.style.rotate === "90deg") {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null && currentButton.className === "column") {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id) + 1
+                                        && Number(currentButton.id) === Number(button.id)
+                                } else {
+                                    return false;
+                                }
+                            });
+                } else if (dragged.style.rotate === "180deg") {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null && currentButton.className === "column") {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
+                                        && Number(currentButton.id) === Number(button.id) - 1
+                                } else {
+                                    return false;
+                                }
+                            });
+                } else if (dragged.style.rotate === "270deg") {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null && currentButton.className === "column") {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id) - 1
+                                        && Number(currentButton.id) === Number(button.id)
+                                } else {
+                                    return false;
+                                }
+                            });
+                } else {
+                    nextButton =
+                        buttons.find(
+                            (currentButton) => {
+                                if (currentButton !== null && currentButton.className === "column") {
+                                    return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
+                                        && Number(currentButton.id) === Number(button.id) + 1
+                                } else {
+                                    return false;
+                                }
+                            });
+                }
+                if (button.className === "column") {
+                    currentDragOver = [button, nextButton];
+                }
+            } else if (dragged.classList[1] === "boat") {
+                if (button.className === "column") {
+                    currentDragOver = [button];
+                }
             }
-            if(button.className === "column") {
-                currentDragOver = [button, nextButton, nextNextButton];
-            }
-        } else if (dragged.classList[1] === "battleship") {
-            let nextButton;
-            if (dragged.style.rotate === "90deg") {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if(currentButton !== null && currentButton.className === "column") {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id) + 1
-                                    && Number(currentButton.id) === Number(button.id)
-                            }else {
-                                return false;
-                            }
-                        });
-            } else if (dragged.style.rotate === "180deg") {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if(currentButton !== null && currentButton.className === "column") {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
-                                    && Number(currentButton.id) === Number(button.id) - 1
-                            }else {
-                                return false;
-                            }
-                        });
-            } else if (dragged.style.rotate === "270deg") {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if(currentButton !== null && currentButton.className === "column") {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id) - 1
-                                    && Number(currentButton.id) === Number(button.id)
-                            }else {
-                                return false;
-                            }
-                        });
-            } else {
-                nextButton =
-                    buttons.find(
-                        (currentButton) => {
-                            if(currentButton !== null && currentButton.className === "column") {
-                                return Number(currentButton.parentElement.id) === Number(button.parentElement.id)
-                                    && Number(currentButton.id) === Number(button.id) + 1
-                            }else {
-                                return false;
-                            }
-                        });
-            }
-            if(button.className === "column") {
-                currentDragOver = [button, nextButton];
-            }
-        } else if (dragged.classList[1] === "boat") {
-            if(button.className === "column") {
-                currentDragOver = [button];
-            }
-        }
-    });
-})
+        });
+    })
+}
 
 function styleShip(width, height, ship) {
     ship.style.height = (height - 40) + "px";
@@ -412,6 +416,7 @@ next.addEventListener("click", () => {
             }
             gridBox.appendChild(row);
         }
+        generateButtonListeners();
         console.log(buttons)
         turnLabel.innerHTML = "Turn: Player 2";
     } else if (turn === "player2" && !player1GridRandom && data.grid1.length === 0) {
