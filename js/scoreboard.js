@@ -2,7 +2,7 @@ let simpleStats = document.querySelectorAll(".simple-stat");
 let detailedStats = document.querySelector(".detailed-stats");
 let newGame = document.querySelector(".new-game");
 
-let data = localStorage.getItem("data");
+let data = JSON.parse(localStorage.getItem("data"));
 
 let player1Wins = data.player1Wins;
 let player2Wins = data.player2Wins;

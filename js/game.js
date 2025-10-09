@@ -539,8 +539,7 @@ function finishGame() {
         games: games};
     localStorage.removeItem("data");
     localStorage.setItem("data", JSON.stringify(data));
-    console.log(JSON.stringify(data));
-    // window.location.href = "../pages/scoreboard.html";
+    window.location.href = "../pages/scoreboard.html";
 }
 
 const continueCode = (button) => {
