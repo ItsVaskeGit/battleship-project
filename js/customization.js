@@ -3,7 +3,6 @@ let turnLabel = document.querySelector("#turn");
 let ships = document.querySelectorAll(".ship");
 let next = document.querySelector(".next");
 let buttons = [];
-let turn = "player1";
 
 let dragged = null;
 let currentDragOver = null;
@@ -25,6 +24,14 @@ let player2WinRatio = data.player2WinRatio;
 let cpuWinRatio = data.cpuWinRatio;
 let gamesPlayed = data.gamesPlayed;
 let games = data.games;
+
+let turn;
+
+if(gameType === "pve" || player1GridRandom) {
+    turn = "player1";
+}else {
+    turn = "player2";
+}
 
 turnLabel.innerHTML = "Turn: Player 1";
 
