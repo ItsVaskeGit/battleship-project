@@ -403,6 +403,7 @@ next.addEventListener("click", () => {
             gameType: gameType,
             grid1: grid1,
             grid2: grid2,
+            player1Ships: grid1.length,
             player1Wins: player1Wins,
             player2Wins: player2Wins,
             cpuWins: cpuWins,

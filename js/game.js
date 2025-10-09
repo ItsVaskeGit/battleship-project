@@ -34,6 +34,11 @@ console.log(gridY);
 //Set the initial turn label
 turnLabel.innerHTML = "Turn: Player 1";
 
+if(player1Ships && player2Ships) {
+    player1Label.innerHTML = "Player 1: " + player1Ships;
+    player2Label.innerHTML = "Player 1: " + player2Ships;
+}
+
 // This is used to append all the rows and columns inside HTML according to the grid size
 for(let i = 0; i < gridX; i++) {
     const row = document.createElement('div');
