@@ -227,6 +227,7 @@ function dragOver(height, width, ship) {;
     if (dragged.classList[1] === "cruiser") {
         let xAxis = [];
         let yAxis = [];
+        console.log(currentDragOver);
         xAxis.push(currentDragOver[0].id, currentDragOver[1].id, currentDragOver[2].id);
         yAxis.push(currentDragOver[0].parentElement.id,
             currentDragOver[1].parentElement.id, currentDragOver[2].parentElement.id);
