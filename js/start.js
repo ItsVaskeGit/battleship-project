@@ -28,21 +28,6 @@ randomize.addEventListener("click", () => {
 
 startButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        if(button.id === "pvp") {
-            data.gameType = "pvp";
-            if(data.player1GridRandom && data.player2GridRandom) {
-                window.location.href = "/pages/game.html";
-            }else {
-                window.location.href = "/pages/customization.html";
-            }
-        }else {
-            data.data.gameType = "pve";
-            if(data.player1GridRandom) {
-                window.location.href = "/pages/game.html";
-            }else {
-                window.location.href = "/pages/customization.html";
-            }
-        }
         gridInputs.forEach((input) => {
             if(input.id === "grid-x") {
                 data.gridX = input.value;
@@ -64,6 +49,21 @@ startButtons.forEach((button) => {
             localStorage.setItem("data", JSON.stringify(data));
         }else {
             localStorage.setItem("data", JSON.stringify(data));
+        }
+        if(button.id === "pvp") {
+            data.gameType = "pvp";
+            if(data.player1GridRandom && data.player2GridRandom) {
+                window.location.href = "/pages/game.html";
+            }else {
+                window.location.href = "/pages/customization.html";
+            }
+        }else {
+            data.data.gameType = "pve";
+            if(data.player1GridRandom) {
+                window.location.href = "/pages/game.html";
+            }else {
+                window.location.href = "/pages/customization.html";
+            }
         }
     });
 });
