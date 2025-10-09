@@ -1,3 +1,7 @@
+<img src="https://i.imgur.com/Ee1PdCS.png" alt="JS">
+
+https://vasilije.unaux.com/pages/game.html
+
 # Battleship Game Project
 
 In this game the objective is to guess the location of enemy's battleships on a grid with coordinates.
@@ -30,6 +34,8 @@ The first one to eliminate all of other player's ships is determined to be a win
 
 ## Programming concepts
 
+### This game uses plain HTML, CSS and JavaScript. No other libraries or any external code.
+
 For the actual grid two-dimensional array will be used and it will have fixed size of the both dimensions.
 
 ```javascript
@@ -52,3 +58,12 @@ const direction = Math.round(Math.random())
 ```
 
 During the random generation checks will be implemented to prevent another ship being placed in an already occupied space.
+
+## Plans for the Future
+
+* Adding better protection and checking to the customization page
+* Adding networking support for real multiplayer
+* Making better animations
+* Styling better
+* Add a soundtrack, it is less boring with it
+* Add sound effect to the exploding and splashing animation
