@@ -4,8 +4,6 @@ let newGame = document.querySelector(".new-game");
 
 let data = JSON.parse(localStorage.getItem("data"));
 
-console.log(data)
-
 let player1Wins = data.player1Wins;
 let player2Wins = data.player2Wins;
 let cpuWins =  data.cpuWins;

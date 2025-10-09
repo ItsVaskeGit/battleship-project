@@ -43,8 +43,6 @@ h1, h3 {
 }
 
 .return {
-    display: flex;
-    justify-content: center;
     margin-top: 50px;
 }
 
