@@ -8,6 +8,24 @@ let player1Ships = 0;
 let player2Ships = 0;
 let turn = 'player1';
 
+let data = localStorage.getItem("data");
+
+let gridX = data.gridX;
+let gridY = data.gridY;
+let grid1 = data.grid1;
+let grid2 = data.grid2;
+let gameType = data.gameType;
+let player1Wins = data.player1Wins;
+let player2Wins = data.player1Wins;
+let cpuWins =  data.cpuWins;
+let player1GridRandom = data.player1GridRandom;
+let player2GridRandom = data.player2GridRandom;
+let player1WinRatio = data.player1WinRatio;
+let player2WinRatio = data.player2WinRatio;
+let cpuWinRatio = data.cpuWinRatio;
+let gamesPlayed = data.gamesPlayed;
+let games = data.games;
+
 //Set the initial turn label
 turnLabel.innerHTML = "Turn: Player 1";
 
@@ -500,6 +518,22 @@ function switchTurns() {
 
 // This function is used to determine winner and to switch to the scoreboard page, where stats can be evaluated
 function finishGame() {
+    let data = { gridX: gridX,
+        gridY: gridY,
+        player1GridRandom: player1GridRandom,
+        player2GridRandom: player2GridRandom,
+        grid1: grid1,
+        grid2: grid2,
+        player1Wins: player1Wins,
+        player2Wins: player2Wins,
+        cpuWins: cpuWins,
+        player1WinRatio: player1WinRatio,
+        player2WinRatio: player2WinRatio,
+        cpuWinRatio: cpuWinRatio,
+        gamesPlayed: gamesPlayed,
+        games: games};
+    localStorage.removeItem("data");
+    localStorage.setItem("data", JSON.stringify(data));
     window.location.href = "../pages/scoreboard.html";
 }
 

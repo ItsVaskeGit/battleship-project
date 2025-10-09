@@ -4,6 +4,21 @@ let randomize = document.querySelector(".randomize");
 let player1Randomized = document.querySelector("#player1-randomize");
 let player2Randomized = document.querySelector("#player2-randomize");
 
+let data = { gridX: 0,
+    gridY: 0,
+    player1GridRandom: false,
+    player2GridRandom: false,
+    grid1: [],
+    grid2: [],
+    player1Wins: 0,
+    player2Wins: 0,
+    cpuWins: 0,
+    player1WinRatio: 0,
+    player2WinRatio: 0,
+    cpuWinRatio: 0,
+    gamesPlayed: 0,
+    games: []};
+
 randomize.addEventListener("click", () => {
    let random = Math.round(Math.random() * 10) -1;
    gridInputs.forEach((input) => {
@@ -14,15 +29,15 @@ randomize.addEventListener("click", () => {
 startButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if(button.id === "pvp") {
-            gameType = "pvp";
-            if(player1GridRandom && player2GridRandom) {
+            data.gameType = "pvp";
+            if(data.player1GridRandom && data.player2GridRandom) {
                 window.location.href = "/pages/game.html";
             }else {
                 window.location.href = "/pages/customization.html";
             }
         }else {
-            gameType = "pve";
-            if(player1GridRandom) {
+            data.data.gameType = "pve";
+            if(data.player1GridRandom) {
                 window.location.href = "/pages/game.html";
             }else {
                 window.location.href = "/pages/customization.html";
@@ -30,30 +45,45 @@ startButtons.forEach((button) => {
         }
         gridInputs.forEach((input) => {
             if(input.id === "grid-x") {
-                gridX = input.value;
+                data.gridX = input.value;
             }else {
-                gridY = input.value;
+                data.gridY = input.value;
             }
         });
+        let fetchedData = JSON.parse(localStorage.getItem("data"));
+        if(fetchedData !== null) {
+            data.player1Wins = fetchedData.player1Wins;
+            data.player2Wins = fetchedData.player2Wins;
+            data.cpuWins = fetchedData.cpuWins;
+            data.player1WinRatio = fetchedData.player1WinRatio;
+            data.player2WinRatio = fetchedData.player2WinRatio;
+            data.cpuWinRatio = fetchedData.cpuWinRatio;
+            data.gamesPlayed = fetchedData.gamesPlayed;
+            data.games = fetchedData.games;
+            localStorage.removeItem("data");
+            localStorage.setItem("data", JSON.stringify(data));
+        }else {
+            localStorage.setItem("data", JSON.stringify(data));
+        }
     });
 });
 
 player1Randomized.addEventListener("click", () => {
-    if(player1GridRandom) {
-        player1GridRandom = false;
+    if(data.player1GridRandom) {
+        data.player1GridRandom = false;
         player1Randomized.style.backgroundColor = "lightgray";
     }else {
-        player1GridRandom = true;
+        data.player1GridRandom = true;
         player1Randomized.style.backgroundColor = "aqua";
     }
 });
 
 player2Randomized.addEventListener("click", () => {
-    if(player2GridRandom) {
-        player2GridRandom = false;
+    if(data.player2GridRandom) {
+        data.player2GridRandom = false;
         player2Randomized.style.backgroundColor = "lightgray";
     }else {
-        player2GridRandom = true;
+        data.player2GridRandom = true;
         player2Randomized.style.backgroundColor = "aqua";
     }
 });

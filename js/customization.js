@@ -8,6 +8,16 @@ let turn = "player1";
 let dragged = null;
 let currentDragOver = null;
 
+let data = JSON.parse(localStorage.getItem("data"));
+
+let gridX = data.gridX;
+let gridY = data.gridY;
+let grid1 = data.grid1;
+let grid2 = data.grid2;
+let player1GridRandom = data.player1GridRandom;
+let player2GridRandom = data.player2GridRandom;
+let gameType = data.gameType;
+
 turnLabel.innerHTML = "Turn: Player 1";
 
 for (let i = 0; i < gridX; i++) {
@@ -391,7 +401,7 @@ next.addEventListener("click", () => {
             gridBox.appendChild(row);
         }
         turnLabel.innerHTML = "Turn: Player 2";
-    } else if (turn === "player2" && !player1GridRandom && grid1.length === 0) {
+    } else if (turn === "player2" && !player1GridRandom && data.grid1.length === 0) {
         turn = "player1";
         gridBox.innerHTML = "";
         for (let i = 0; i < gridX; i++) {
@@ -410,6 +420,22 @@ next.addEventListener("click", () => {
             turnLabel.innerHTML = "Turn: Player 1";
         }
     } else if (turn === "player2" && !player1GridRandom && !player2GridRandom) {
+        let data = { gridX: gridX,
+            gridY: gridY,
+            player1GridRandom: player1GridRandom,
+            player2GridRandom: player2GridRandom,
+            grid1: grid1,
+            grid2: grid2,
+            player1Wins: this.data.player1Wins,
+            player2Wins: this.data.player2Wins,
+            cpuWins: this.data.cpuWins,
+            player1WinRatio: this.data.player1WinRatio,
+            player2WinRatio: this.data.player2WinRatio,
+            cpuWinRatio: this.data.cpuWinRatio,
+            gamesPlayed: this.data.gamesPlayed,
+            games: this.data.games};
+        localStorage.removeItem("data");
+        localStorage.setItem("data", JSON.stringify(data));
         window.location.href = "../pages/game.html";
     }
 })

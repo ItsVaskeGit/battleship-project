@@ -2,6 +2,17 @@ let simpleStats = document.querySelectorAll(".simple-stat");
 let detailedStats = document.querySelector(".detailed-stats");
 let newGame = document.querySelector(".new-game");
 
+let data = localStorage.getItem("data");
+
+let player1Wins = data.player1Wins;
+let player2Wins = data.player2Wins;
+let cpuWins =  data.cpuWins;
+let player1WinRatio = data.player1WinRatio;
+let player2WinRatio = data.player2WinRatio;
+let cpuWinRatio = data.cpuWinRatio;
+let gamesPlayed = data.gamesPlayed;
+let games = data.games;
+
 simpleStats.forEach((stat) => {
     switch(stat.id) {
         case 'player1-wins':
