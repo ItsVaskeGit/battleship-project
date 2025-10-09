@@ -17,6 +17,11 @@ let grid2 = data.grid2;
 let player1GridRandom = data.player1GridRandom;
 let player2GridRandom = data.player2GridRandom;
 let gameType = data.gameType;
+let player1WinRatio = data.player1WinRatio;
+let player2WinRatio = data.player2WinRatio;
+let cpuWinRatio = data.cpuWinRatio;
+let gamesPlayed = data.gamesPlayed;
+let games = data.games;
 
 turnLabel.innerHTML = "Turn: Player 1";
 
@@ -386,6 +391,7 @@ next.addEventListener("click", () => {
     if (turn === "player1" && !player2GridRandom && grid2.length === 0) {
         turn = "player2";
         gridBox.innerHTML = "";
+        buttons = [];
         for (let i = 0; i < gridX; i++) {
             const row = document.createElement('div');
             row.setAttribute("class", "row");
@@ -404,6 +410,7 @@ next.addEventListener("click", () => {
     } else if (turn === "player2" && !player1GridRandom && data.grid1.length === 0) {
         turn = "player1";
         gridBox.innerHTML = "";
+        buttons = [];
         for (let i = 0; i < gridX; i++) {
             const row = document.createElement('div');
             row.setAttribute("class", "row");
@@ -424,16 +431,17 @@ next.addEventListener("click", () => {
             gridY: gridY,
             player1GridRandom: player1GridRandom,
             player2GridRandom: player2GridRandom,
+            gameType: gameType,
             grid1: grid1,
             grid2: grid2,
-            player1Wins: this.data.player1Wins,
-            player2Wins: this.data.player2Wins,
-            cpuWins: this.data.cpuWins,
-            player1WinRatio: this.data.player1WinRatio,
-            player2WinRatio: this.data.player2WinRatio,
-            cpuWinRatio: this.data.cpuWinRatio,
-            gamesPlayed: this.data.gamesPlayed,
-            games: this.data.games};
+            player1Wins: player1Wins,
+            player2Wins: player2Wins,
+            cpuWins: cpuWins,
+            player1WinRatio: player1WinRatio,
+            player2WinRatio: player2WinRatio,
+            cpuWinRatio: cpuWinRatio,
+            gamesPlayed: gamesPlayed,
+            games: games};
         localStorage.removeItem("data");
         localStorage.setItem("data", JSON.stringify(data));
         window.location.href = "../pages/game.html";
