@@ -10,8 +10,6 @@ let currentDragOver = null;
 
 let data = JSON.parse(localStorage.getItem("data"));
 
-console.log(data)
-
 let gridX = data.gridX;
 let gridY = data.gridY;
 let grid1 = data.grid1;
