@@ -109,18 +109,35 @@ function takeAShot(button) {
 // This function determines if the game is finished
 function checkWinner() {
     if(player1Ships === 0 || player2Ships === 0) {
-        if(gameType === 'pve' && player1Ships === 0) {
-            games.push({winner: 'CPU', type: 'PvE', player1Ships: player1Ships, player2Ships: '0', cpuShips: player2Ships});
-            cpuWins++;
-        }else if(player1Ships === 0 && gameType === 'pvp') {
-            games.push({winner: 'Player 2', type: 'PvP', player1Ships: player1Ships, player2Ships: player2Ships, cpuShips: '0'})
-            player2Wins++;
-        }else if(player2Ships === 0 && gameType === 'pve') {
-            games.push({winner: 'Player 1', type: 'PvE', player1Ships: player1Ships, player2Ships: '0', cpuShips: player2Ships})
-            player1Wins++;
-        }else if(player1Ships === 0 && gameType === 'pvp') {
-            games.push({winner: 'Player 2', type: 'PvP', player1Ships: player1Ships, player2Ships: player2Ships, cpuShips: '0'})
-            player2Wins++
+        if(gameType === "pve") {
+            if(player1Ships === 0) {
+                games.push({winner: 'CPU', type: 'PvE', player1Ships: player1Ships, player2Ships: '0', cpuShips: player2Ships});
+                cpuWins++;
+            }else if(player2Ships === 0) {
+                games.push({winner: 'Player 1', type: 'PvE', player1Ships: player1Ships, player2Ships: '0', cpuShips: player2Ships})
+                player1Wins++;
+            }
+        }
+        if(gameType === "pvp") {
+            if (player1Ships === 0) {
+                games.push({
+                    winner: 'Player 2',
+                    type: 'PvP',
+                    player1Ships: player1Ships,
+                    player2Ships: player2Ships,
+                    cpuShips: '0'
+                })
+                player2Wins++;
+            } else if (player2Ships === 0) {
+                games.push({
+                    winner: 'Player 1',
+                    type: 'PvP',
+                    player1Ships: player1Ships,
+                    player2Ships: player2Ships,
+                    cpuShips: '0'
+                })
+                player1Wins++
+            }
         }
         finishGame()
     }
@@ -539,8 +556,7 @@ function finishGame() {
         games: games};
     localStorage.removeItem("data");
     localStorage.setItem("data", JSON.stringify(data));
-    console.log(data);
-    // window.location.href = "../pages/scoreboard.html";
+    window.location.href = "../pages/scoreboard.html";
 }
 
 const continueCode = (button) => {
