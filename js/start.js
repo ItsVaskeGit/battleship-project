@@ -56,7 +56,7 @@ startButtons.forEach((button) => {
             }
         }
         if(button.id === "pve") {
-            data.data.gameType = "pve";
+            data.gameType = "pve";
             if(data.player1GridRandom) {
                 window.location.href = "/pages/game.html";
             }else {
