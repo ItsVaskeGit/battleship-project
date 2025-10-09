@@ -42,13 +42,13 @@ startButtons.forEach((button) => {
             data.cpuWinRatio = fetchedData.cpuWinRatio;
             data.gamesPlayed = fetchedData.gamesPlayed;
             data.games = fetchedData.games;
-            localStorage.removeItem("data");
-            localStorage.setItem("data", JSON.stringify(data));
         }else {
             localStorage.setItem("data", JSON.stringify(data));
         }
         if(button.id === "pvp") {
             data.gameType = "pvp";
+            localStorage.removeItem("data");
+            localStorage.setItem("data", JSON.stringify(data));
             if(data.player1GridRandom && data.player2GridRandom) {
                 window.location.href = "/pages/game.html";
             }else {
@@ -57,6 +57,8 @@ startButtons.forEach((button) => {
         }
         if(button.id === "pve") {
             data.gameType = "pve";
+            localStorage.removeItem("data");
+            localStorage.setItem("data", JSON.stringify(data));
             if(data.player1GridRandom) {
                 window.location.href = "/pages/game.html";
             }else {
