@@ -395,7 +395,7 @@ function addEntry(xAxisWithoutDuplicates, yAxisWithoutDuplicates, type, ship) {
 }
 
 next.addEventListener("click", () => {
-    if(games === "pve") {
+    if(gameType === "pve") {
         let data = { gridX: gridX,
             gridY: gridY,
             player1GridRandom: player1GridRandom,
