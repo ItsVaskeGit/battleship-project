@@ -15,10 +15,10 @@ startButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if(button.id === "pvp") {
             gameType = "pvp";
-            if(player1GridRandom || player2GridRandom) {
-                window.location.href = "/pages/customization.html";
-            }else {
+            if(player1GridRandom && player2GridRandom) {
                 window.location.href = "/pages/game.html";
+            }else {
+                window.location.href = "/pages/customization.html";
             }
         }else {
             gameType = "pve";

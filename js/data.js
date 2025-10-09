@@ -4,9 +4,9 @@ let gridY = 0;
 
 let gameType;
 
-let player1GridRandom;
+let player1GridRandom = false;
 
-let player2GridRandom;
+let player2GridRandom = false;
 
 let grid1 = [];
 
