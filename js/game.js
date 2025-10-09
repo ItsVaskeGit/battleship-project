@@ -4,8 +4,6 @@ let player1Label = document.querySelector("#player-1");
 let player2Label = document.querySelector("#player-2")
 let buttons = [];
 
-let player1Ships = 0;
-let player2Ships = 0;
 let turn = 'player1';
 
 let data = localStorage.getItem("data");
@@ -18,6 +16,8 @@ let gameType = data.gameType;
 let player1Wins = data.player1Wins;
 let player2Wins = data.player2Wins;
 let cpuWins =  data.cpuWins;
+let player1Ships = data.player1Ships;
+let player2Ships = data.player2Ships;
 let player1GridRandom = data.player1GridRandom;
 let player2GridRandom = data.player2GridRandom;
 let player1WinRatio = data.player1WinRatio;
@@ -25,6 +25,9 @@ let player2WinRatio = data.player2WinRatio;
 let cpuWinRatio = data.cpuWinRatio;
 let gamesPlayed = data.gamesPlayed;
 let games = data.games;
+
+console.log(gridX);
+console.log(gridY);
 
 //Set the initial turn label
 turnLabel.innerHTML = "Turn: Player 1";

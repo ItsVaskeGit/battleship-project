@@ -459,6 +459,8 @@ next.addEventListener("click", () => {
             grid2: grid2,
             player1Wins: player1Wins,
             player2Wins: player2Wins,
+            player1Ships: grid1.length,
+            player2Ships: grid2.length,
             cpuWins: cpuWins,
             player1WinRatio: player1WinRatio,
             player2WinRatio: player2WinRatio,
