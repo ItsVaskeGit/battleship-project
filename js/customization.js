@@ -28,9 +28,9 @@ let games = data.games;
 let turn;
 
 if(gameType === "pve" || player1GridRandom) {
-    turn = "player1";
-}else {
     turn = "player2";
+}else {
+    turn = "player1";
 }
 
 turnLabel.innerHTML = "Turn: Player 1";
