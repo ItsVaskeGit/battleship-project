@@ -4,9 +4,9 @@ let gridY = 0;
 
 let gameType = "pve";
 
-let player1GridRandom = true;
+let player1GridRandom = false;
 
-let player2GridRandom = true;
+let player2GridRandom = false;
 
 let grid1 = [];
 

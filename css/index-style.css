@@ -20,6 +20,29 @@
     justify-content: space-evenly;
 }
 
+.randomize-grid {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#player1-randomize, #player2-randomize {
+    padding: 20px 40px 20px 40px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+#player1-randomize:hover, #player2-randomize:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+#player1-randomize:checked, #player2-randomize:checked {
+    background-color: aqua;
+    cursor: pointer;
+}
+
 #pvp, #pve {
     border: 2px solid black;
     border-radius: 30px;

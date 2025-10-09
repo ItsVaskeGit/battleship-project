@@ -1,6 +1,8 @@
 let gridInputs = document.querySelectorAll(".grid");
 let startButtons = document.querySelectorAll(".start-button");
 let randomize = document.querySelector(".randomize");
+let player1Randomized = document.querySelector("#player1-randomize");
+let player2Randomized = document.querySelector("#player2-randomize");
 
 randomize.addEventListener("click", () => {
    let random = Math.round(Math.random() * 10) -1;
@@ -34,4 +36,24 @@ startButtons.forEach((button) => {
             }
         });
     });
+});
+
+player1Randomized.addEventListener("click", () => {
+    if(player1GridRandom) {
+        player1GridRandom = false;
+        player1Randomized.style.backgroundColor = "lightgray";
+    }else {
+        player1GridRandom = true;
+        player1Randomized.style.backgroundColor = "aqua";
+    }
+});
+
+player2Randomized.addEventListener("click", () => {
+    if(player2GridRandom) {
+        player2GridRandom = false;
+        player2Randomized.style.backgroundColor = "lightgray";
+    }else {
+        player2GridRandom = true;
+        player2Randomized.style.backgroundColor = "aqua";
+    }
 });
